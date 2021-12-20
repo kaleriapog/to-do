@@ -1,0 +1,48 @@
+//  colors
+
+$color-white: #fff;
+$color-black: #000;
+$color-border: #333;
+$color-border-second: #eee;
+$color-border-light: #ccc;
+$color-border-dark: #666;
+$color-text-main: #666;
+$color-bg-button: #333;
+$color-hover: #40BBC2;
+$color-item-bg: #F9F9F9;
+$color-circle-bg: #999;
+$color-triangle-bg: #c4c4c4;
+$color-more-bg: #fefefe;
+
+
+//  samples
+
+%placeholder {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 115%;
+    color: $color-text-main;
+}
+
+%button {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 115%;
+    color: $color-white;
+    background-color: $color-bg-button;
+    padding: 20px 90px;
+    display: block;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: $color-hover;
+    }
+}
+
+%tasks-lists {
+    border: 1px solid $color-border-second;
+    box-shadow: 0px 15px 20px rgba(136, 136, 136, 0.25);
+    border-radius: 50px;
+    padding: 45px 85px;
+}
+
