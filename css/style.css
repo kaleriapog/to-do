@@ -444,6 +444,13 @@ body {
   font-size: 24px;
   line-height: 30px;
   color: #000;
+  cursor: pointer;
+  padding-bottom: 20px;
+}
+
+.tasks-lists-page .profile-info .user-info:hover .user-info__more {
+  visibility: visible;
+  opacity: 1;
 }
 
 .tasks-lists-page .profile-info .user-info__name {
@@ -460,7 +467,8 @@ body {
 }
 
 .tasks-lists-page .profile-info .user-info__more {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   padding: 20px 25px;
   background: #fefefe;
   border: 1px solid #eee;
@@ -473,6 +481,7 @@ body {
   position: absolute;
   top: 75px;
   right: -25px;
+  transition: all 0.3s;
 }
 
 .tasks-lists-page .profile-info .user-info__more::before {
