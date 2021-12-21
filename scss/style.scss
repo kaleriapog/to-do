@@ -20,6 +20,51 @@
     display: none;
 }
 
+.section-all-wrapp {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hiden {
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        background-color: rgba(0, 0, 0, 0.35);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.open-section {
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+
+.hovertrue {
+    transition: all 0.3s;
+
+    &::after {
+        content: '';
+        display: block;
+        background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(0,142,196,0.2) 1%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(80,196,0,0.2) 99%, rgba(255,255,255,0.1) 100%);
+        position: absolute;
+        left: -10px;
+        right: -10px;
+        top: -10px;
+        bottom: -10px;
+        border-radius: 50px;
+        z-index: -1;
+    }
+}
+
 //  style for section width 
 
 .w-small {
@@ -99,16 +144,21 @@
 
 // style for sign in 
 
-.signin-wrapp {
+.section-signin {
 
-    .form {
+    // @extend %visibility-section;
 
-        &__items-wrapp {
-            justify-content: center;
-        }
+    .signin-wrapp {
 
-        input {
-            max-width: 452px;
+        .form {
+    
+            &__items-wrapp {
+                justify-content: center;
+            }
+    
+            input {
+                max-width: 452px;
+            }
         }
     }
 }
@@ -127,6 +177,9 @@
             @extend %tasks-lists;
             display: flex;
             justify-content: space-between;
+            position: relative;
+            background-color: $color-white;
+            transition: all 0.3s;
         }
     
         .title-regular {
@@ -145,6 +198,7 @@
             width: 100%;
             max-height: 400px;
             min-height: 130px;
+            height: 100%;
             margin-bottom: 28px;
         }
 
@@ -154,7 +208,17 @@
         }
 
         &__to-do {
-            border-right: 1px solid $color-border-light;
+            border-right: 1px solid $color-border-light;            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+           
+            .hovertrue {
+                            
+                &::after {
+                    background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(0,142,196,0.2) 1%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.2) 99%, rgba(255,255,255,0.1) 100%);
+                }
+            }
         }
 
         &__item {
@@ -226,6 +290,13 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
+
+            .hovertrue {
+
+                &::after {
+                    background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 1%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(80,196,0,0.2) 99%, rgba(255,255,255,0.1) 100%);
+                }
+            }
         }
 
         .icon-circles {
@@ -369,12 +440,18 @@
 // style for section edit profile
 
 .section-edit-profile {
+    
+   @extend %visibility-section;
+
+    .edit-profile-wrapp {
+        background-color: $color-white;
+    }
 
     .form {
 
         &__items-wrapp {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between;            
         }
 
         &__item-wrapp {
@@ -396,6 +473,12 @@
 
 .section-create-task {
 
+   @extend %visibility-section;
+
+    .create-task-wrapp {
+        background-color: $color-white;
+    }
+
     .new-task {
         max-width: 100%;
         width: 100%;
@@ -415,9 +498,3 @@
         }
     }
 }
-
-
-section {
-    margin-bottom: 100px;
-}
-

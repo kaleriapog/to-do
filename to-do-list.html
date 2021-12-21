@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My to do</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="body">
+    <div class="section-all-wrapp">
+        <section class="section-tasks-lists">
+            <div class="w-regular">
+                <div class="tasks-lists-page">
+                    <div class="tasks-lists">
+                        <div class="w-small">
+                            <div class="tasks-lists-wrapp">
+                                <div class="tasks-lists__to-do">
+                                    <span class="title-regular">to do</span>
+                                        <div class="tasks-lists__items js-to-do">
+                                            <div id="js-task-1" class="tasks-lists__item js-task" draggable="true">
+                                                <p class="tasks-lists__text">I want to Break Free for change my life forever</p>
+                                                <span class="icon-circles">
+                                                    <span class="icon-circle"></span>
+                                                    <span class="icon-circle"></span>
+                                                    <span class="icon-circle"></span>
+                                                </span>
+                                            </div>
+                                            <div id="js-task-2" class="tasks-lists__item js-task" draggable="true">
+                                                <p class="tasks-lists__text">Task test too task cat</p>
+                                                <span class="icon-circles">
+                                                    <span class="icon-circle"></span>
+                                                    <span class="icon-circle"></span>
+                                                    <span class="icon-circle"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    <div class="tasks-lists__add-task">
+                                        <span>Add new task</span>
+                                        <span class="plus">
+                                            <span class="plus-v"></span>
+                                            <span class="plus-h"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="tasks-lists__complited">
+                                    <span class="title-regular">Complited</span>
+                                    <div class="tasks-lists__items js-complited">
+                                        <div id="js-task-3" class="tasks-lists__item js-task" draggable="true">
+                                            <p class="tasks-lists__text">I want to Break Free for change my life forever</p>
+                                            <span class="icon-circles">
+                                                <span class="icon-circle"></span>
+                                                <span class="icon-circle"></span>
+                                                <span class="icon-circle"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <div class="user-info">
+                            <div class="user-info__img">
+                                <img alt="photo user" src="./images/img.png">
+                            </div>
+                            <span class="user-info__name">Mr. Yarick</span>
+                            <span class="icon-triangle"></span>
+                            <div class="user-info__more">
+                                <span class="user-info__edit">Edit profil</span>
+                                <span class="user-info__log-out">Log Out</span>
+                            </div>
+                        </div>
+                        <div class="progress-сompleted">
+                            <div class="progress-сompleted__wrapp">
+                                <div class="progress-сompleted__patch">
+                                    <span class="progress-сompleted__percent">77%</span>
+                                    <span>Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-edit-profile">
+            <div class="w-small">
+                <div class="edit-profile-wrapp">
+                    <span class="title-regular">Profil</span>
+                    <form name="edit-form" class="form">
+                        <div class="form__items-wrapp">
+                            <div class="form__item-wrapp">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="Name">
+                            </div>
+                            <div class="form__item-wrapp">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="Email">
+                            </div>
+                            <div class="form__item-wrapp">
+                                <label for="age">Age</label>
+                                <input id="age" type="number" placeholder="Age">
+                            </div>
+                            <div class="form__item-wrapp">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form__button-wrapp">
+                            <button type="submit" class="button">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="section-create-task">
+            <div class="w-small">
+                <div class="create-task-wrapp">
+                    <span class="title-regular">Task name</span>
+                    <form name="edit-form" class="form">
+                        <div class="form__items-wrapp">
+                            <div class="form__item-wrapp">
+                                <label for="new-task">Description</label>
+                                <textarea id="new-task" class="new-task"></textarea>
+                            </div>
+                        </div>
+                        <div class="form__button-wrapp">
+                            <button type="submit" class="button">Creat</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="js/scripts.js" type="module"></script>
+</body>
+</html>
