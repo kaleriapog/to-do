@@ -5,30 +5,57 @@ const body = document.querySelector('body');
 const createTask = document.querySelector('.section-create-task');
 const clickAddTask = document.querySelector('.tasks-lists__add-task');
 const signIn = document.querySelector('.section-signin');
-const clickSignIn = document.querySelector('.another-choice');
+const clickSignIn = document.querySelector('.singin');
+const reg = document.querySelector('.section-reg');
+const clickReg = document.querySelector('.reg');
 
 // scripts for open edit profile
-  
-clickEditProfile.addEventListener('click', openEditProfile);
 
-function openEditProfile() {
-    editProfile.classList.add('open-section');
-    body.classList.add('hiden');
+if(clickEditProfile !== null) {
+
+    clickEditProfile.addEventListener('click', openEditProfile);
+
+    function openEditProfile() {
+        editProfile.classList.add('open-section');
+        body.classList.add('hiden');
+    }
+
 }
 
 // scripts for open add new task
 
-clickAddTask.addEventListener('click', openCreateTask);
+if(clickAddTask !== null) {
 
-function openCreateTask() {
-    createTask.classList.add('open-section');
-    body.classList.add('hiden');
+    clickAddTask.addEventListener('click', openCreateTask);
+
+    function openCreateTask() {
+        createTask.classList.add('open-section');
+        body.classList.add('hiden');
+    }
+
 }
 
 // scripts for open sign in
+if(clickSignIn !== null) {
 
-// clickSignIn.addEventListener('click', openSignIn);
+    clickSignIn.addEventListener('click', openSignIn);
 
-// function openSignIn() {
-//     signIn.classList.add('open-section');
-// }
+    function openSignIn() {
+        signIn.classList.add('open-section');
+        if(reg != null) {
+            reg.classList.remove('open-section');
+        }    
+    }
+}
+// scripts for open registration
+if(clickReg !== null) {
+
+    clickReg.addEventListener('click', openReg);
+
+    function openReg() {
+        reg.classList.add('open-section');
+        if(signIn != null) {
+            signIn.classList.remove('open-section');
+        }    
+    }
+}

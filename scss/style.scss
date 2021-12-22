@@ -127,6 +127,7 @@
     line-height: 115%;
     color: $color-black;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 // style for registration, sign in, edit-profile-wrapp, create-task-wrapp
@@ -146,9 +147,10 @@
 
 .section-signin {
 
-    // @extend %visibility-section;
+    @extend %visibility-section;
 
     .signin-wrapp {
+        background-color: $color-white;
 
         .form {
     

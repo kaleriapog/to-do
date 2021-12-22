@@ -190,7 +190,7 @@ input[type=number] {
   padding: 45px 85px;
 }
 
-.section-edit-profile, .section-create-task {
+.section-signin, .section-edit-profile, .section-create-task {
   width: 100%;
   visibility: hidden;
   opacity: 0;
@@ -199,6 +199,7 @@ input[type=number] {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50px;
+  transition: all 0.3s;
 }
 
 @font-face {
@@ -332,6 +333,7 @@ body {
   line-height: 115%;
   color: #000;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp {
@@ -343,6 +345,10 @@ body {
 
 .reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular {
   margin-bottom: 50px;
+}
+
+.section-signin .signin-wrapp {
+  background-color: #fff;
 }
 
 .section-signin .signin-wrapp .form__items-wrapp {

@@ -8,42 +8,44 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <section class="section-reg">
-        <div class="w-small">
-            <div class="reg-wrapp">
-                <span class="title-regular">Registration</span>
-                <form name="reg-form" class="form">
-                    <div class="form__items-wrapp">
-                        <input type="text" placeholder="Name">
-                        <input type="email" placeholder="Email">
-                        <input type="number" placeholder="Age">
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <div class="form__button-wrapp">
-                        <button type="submit" class="button">Submit</button>
-                    </div>
-                </form>
-                <span class="another-choice">Already have an account ?</span>
+    <div class="section-all-wrapp">
+        <section class="section-reg">
+            <div class="w-small">
+                <div class="reg-wrapp">
+                    <span class="title-regular">Registration</span>
+                    <form name="regform" class="form">
+                        <div class="form__items-wrapp">
+                            <input name="namereg" type="text" placeholder="Name">
+                            <input name="emailreg" type="email" placeholder="Email">
+                            <input name="agereg" type="number" placeholder="Age">
+                            <input name="passwordreg" type="password" placeholder="Password">
+                        </div>
+                        <div class="form__button-wrapp">
+                            <button type="submit" class="button">Submit</button>
+                        </div>
+                    </form>
+                    <span class="another-choice singin">Already have an account ?</span>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="section-signin">
-        <div class="w-small">
-            <div class="signin-wrapp">
-                <span class="title-regular">SIGN IN</span>
-                <form name="signin-form" class="form">
-                    <div class="form__items-wrapp">
-                        <input type="email" placeholder="Email">
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <div class="form__button-wrapp">
-                        <button type="submit" class="button">Go</button>
-                    </div>
-                </form>
-                <a href="#" class="another-choice">Registration</a>
+        </section>
+        <section class="section-signin">
+            <div class="w-small">
+                <div class="signin-wrapp">
+                    <span class="title-regular">SIGN IN</span>
+                    <form name="signin-form" class="form">
+                        <div class="form__items-wrapp">
+                            <input type="email" placeholder="Email">
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="form__button-wrapp">
+                            <button type="submit" class="button">Go</button>
+                        </div>
+                    </form>
+                    <a href="#" class="another-choice reg">Registration</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>    
     <script src="js/scripts.js" type="module"></script>
 </body>
 </html> 
