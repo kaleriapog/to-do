@@ -59,7 +59,6 @@ if(toDo !== null) {
     draggedElement.classList.remove('hide'); //  показать перетискиваемый элемент после переноса
     e.target.append(draggedElement);  // добавляем переносимый элемент по айди
     console.log ('onondrop')
-  }
-  
+  } 
 }
 
