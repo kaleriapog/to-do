@@ -394,6 +394,8 @@ body {
   min-height: 130px;
   height: 100%;
   margin-bottom: 28px;
+  max-height: 390px;
+  overflow: scroll;
 }
 
 .tasks-lists-page .tasks-lists__to-do, .tasks-lists-page .tasks-lists__complited {
@@ -653,6 +655,8 @@ body {
   border-bottom: 1px solid #333;
   height: 150px;
   margin-bottom: 70px;
+  font-size: 25px;
+  padding-top: 15px;
 }
 
 .section-create-task .form__item-wrapp {

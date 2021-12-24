@@ -202,6 +202,8 @@
             min-height: 130px;
             height: 100%;
             margin-bottom: 28px;
+            max-height: 390px;
+            overflow: scroll;
         }
 
         &__to-do, &__complited {
@@ -487,6 +489,8 @@
         border-bottom: 1px solid $color-border;
         height: 150px;
         margin-bottom: 70px;
+        font-size: 25px;
+        padding-top: 15px;
     }
 
     .form {
