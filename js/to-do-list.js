@@ -51,6 +51,16 @@ if(createTask !== null) {
                 <span class="icon-circle"></span>
                 <span class="icon-circle"></span>
             </span>
+            <div class="more-options js-options">
+                <span>
+                    <span class="more-options__elem">Edit</span>
+                    <span class="more-options__elem js-delete-task">Delete</span>
+                </span>
+                <span class="plus cross">
+                    <span class="plus-v"></span>
+                    <span class="plus-h"></span>
+                </span>
+            </div>
         </div>`;
 
         parentItemsTask.innerHTML += taskItems
@@ -60,19 +70,70 @@ if(createTask !== null) {
 
     // вывести все задачи
 
-    var requestOptions = {
-    method: 'GET',
+    function getAllTask() {
+
+        let requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+
+        fetch("https://api-nodejs-todolist.herokuapp.com/task", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(JSON.parse(result))
+                JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
+                    addTaskInner(elem.description)
+                })
+            })
+        .catch(error => console.log('error', error));
+    }
+    getAllTask();
+
+    // удаление задач по айди
+    let requestOptions = {
+    method: 'DELETE',
     headers: myHeaders,
     redirect: 'follow'
     };
 
-    fetch("https://api-nodejs-todolist.herokuapp.com/task", requestOptions)
-    .then(response => response.text())
-    .then(result => {
-            JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
-                addTaskInner(elem.description)
-            })
-        })
-    .catch(error => console.log('error', error));
+
+    
+    // let idDelete = '61c5d146a891c40017f8f048';
+    
+    // const allListsItems = document.querySelectorAll('.tasks-lists__items')
+
+    // allListsItems.forEach(function(item){
+
+    //     item.addEventListener('click', openMoreOptions, true);
+
+    //     function openMoreOptions(e) {
+
+    //         const iconCirclesOpenMoreOptions = document.querySelectorAll('.icon-circles');
+
+    //         iconCirclesOpenMoreOptions.forEach(function(item){
+    //             item.addEventListener('click', openMoreOptions);
+    //             console.log(item.target)
+        
+    //             function openMoreOptions(e) {
+    //                 let deleteTask = document.querySelectorAll('.js-delete-task');
+    //                 console.log(e.target)
+    //             }
+    //         })
+    //     }
+    // })
+ 
+
+   
+
+
+    // allTask.forEach(function(item){
+    //     item.addEventListener('click')
+    // })
+
+    // fetch(`https://api-nodejs-todolist.herokuapp.com/task/${idDelete}`, requestOptions)
+    // .then(response => response.text())
+    // .then(result => console.log(result))
+    // .catch(error => console.log('error', error));
 
 }

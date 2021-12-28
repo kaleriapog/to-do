@@ -36,6 +36,7 @@ if(clickAddTask !== null) {
 }
 
 // scripts for open sign in
+
 if(clickSignIn !== null) {
 
     clickSignIn.addEventListener('click', openSignIn);
@@ -47,7 +48,9 @@ if(clickSignIn !== null) {
         }    
     }
 }
+
 // scripts for open registration
+
 if(clickReg !== null) {
 
     clickReg.addEventListener('click', openReg);
@@ -58,4 +61,31 @@ if(clickReg !== null) {
             signIn.classList.remove('open-section');
         }    
     }
+}
+
+const crossIconCloseMoreOptions = document.querySelectorAll('.cross');
+const allListsItems = document.querySelectorAll('.tasks-lists__items');
+
+if(allListsItems.length !== 0) { 
+
+    // scripts for open more options
+
+    allListsItems.forEach(function(item){
+
+        item.addEventListener('click', openMoreOptions, true);
+
+        function openMoreOptions(e) {
+       
+            if(e.target.matches('.icon-circles, .icon-circle')) {
+                console.log('получилось открыть опции');
+                e.target.closest('.tasks-lists__item').classList.add('open-more-options');
+                // e.target.parentNode.classList.add('open-more-options');
+            }
+
+            if(e.target.matches('.cross, .plus-v, .plus-h')) {
+                console.log('получилось закрыть опции');
+                e.target.closest('.tasks-lists__item').classList.remove('open-more-options');
+            }
+        }
+    })
 }

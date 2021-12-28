@@ -65,6 +65,107 @@
     }
 }
 
+.plus {
+    width: 16px;
+    height: 16px;
+    position: relative;
+
+    .plus-h, .plus-v {
+        background-color: $color-black;
+        position: absolute;
+        transition: all 0.3s;
+    }
+
+    .plus-h {
+        width: 16px;
+        height: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .plus-v {
+        height: 16px;
+        width: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.more-options {
+    background-color: $color-bg-button;
+    color: $color-white;
+    border-radius: 20px;
+    padding: 23px 33px 0;
+    position: absolute;
+    justify-content: space-between;
+    display: none;
+    
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    span {
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    
+    &__elem {
+        transition: all 0.3s;
+
+        &:hover {
+            color: $color-hover;
+        }
+    }
+
+    .plus {
+        transform: rotate(45deg);
+
+        &:hover {
+            .plus-h, .plus-v {
+                background-color: $color-hover;
+            }
+        }
+
+        .plus-h, .plus-v {
+            background-color: $color-white;
+        }
+    }
+}
+
+.open-more-options {
+
+    .more-options {
+        display: flex;
+    }
+}
+
+.icon-circles {
+    margin-bottom: -3px;
+    width: 20px;
+    cursor: pointer;
+    align-self: flex-start;
+
+    .icon-circle {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: $color-circle-bg;
+        margin: 0 auto 3px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: $color-scrollbar;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $color-triangle-bg;
+    border-radius: 5px;
+}
+
 //  style for section width 
 
 .w-small {
@@ -196,18 +297,19 @@
         }
 
         &__items {
-            max-width: 330px;
+            max-width: 390px;
             width: 100%;
             max-height: 400px;
             min-height: 130px;
             height: 100%;
             margin-bottom: 28px;
             max-height: 390px;
-            overflow: scroll;
+            overflow-y: scroll;
+            padding-right: 60px;
         }
 
         &__to-do, &__complited {
-            max-width: 49%;
+            max-width: 50%;
             width: 100%;
         }
 
@@ -238,6 +340,7 @@
             justify-content: space-between;
             font-size: 20px;
             line-height: 24px;
+            position: relative;
         }
 
         &__add-task {
@@ -251,32 +354,6 @@
             justify-content: space-between;
             transition: all 0.3s;
             cursor: pointer;
-
-            .plus {
-                width: 16px;
-                height: 16px;
-                position: relative;
-
-                .plus-h, .plus-v {
-                    background-color: $color-black;
-                    position: absolute;
-                    transition: all 0.3s;
-                }
-
-                .plus-h {
-                    width: 16px;
-                    height: 2px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
-
-                .plus-v {
-                    height: 16px;
-                    width: 2px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-            }
         }
 
         &__add-task:hover {
@@ -300,18 +377,6 @@
                 &::after {
                     background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 1%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(80,196,0,0.2) 99%, rgba(255,255,255,0.1) 100%);
                 }
-            }
-        }
-
-        .icon-circles {
-            margin-bottom: -3px;
-
-            .icon-circle {
-                width: 5px;
-                height: 5px;
-                border-radius: 50%;
-                background-color: $color-circle-bg;
-                margin-bottom: 3px;
             }
         }
     }
@@ -404,6 +469,7 @@
         }
     }
 }
+
 
 // style for progress сompleted
 
