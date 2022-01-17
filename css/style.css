@@ -190,7 +190,7 @@ input[type=number] {
   padding: 45px 85px;
 }
 
-.section-signin, .section-edit-profile, .section-create-task {
+.section-signin, .section-edit-profile, .section-create-task, .section-update-task {
   width: 100%;
   visibility: hidden;
   opacity: 0;
@@ -314,7 +314,7 @@ body {
   background-color: #333;
   color: #fff;
   border-radius: 20px;
-  padding: 23px 33px 0;
+  padding: 0 33px 0;
   position: absolute;
   justify-content: space-between;
   display: none;
@@ -324,9 +324,14 @@ body {
   bottom: 0;
 }
 
-.more-options span {
-  margin-bottom: 15px;
+.more-options__allelem {
+  align-self: center;
   cursor: pointer;
+  margin-bottom: -5px;
+}
+
+.more-options__allelem span {
+  margin-bottom: 5px;
 }
 
 .more-options__elem {
@@ -337,15 +342,19 @@ body {
   color: #40BBC2;
 }
 
-.more-options .plus {
+.more-options .cross {
   transform: rotate(45deg);
+  position: absolute;
+  top: 23px;
+  right: 33px;
+  cursor: pointer;
 }
 
-.more-options .plus:hover .plus-h, .more-options .plus:hover .plus-v {
+.more-options .cross:hover .plus-h, .more-options .cross:hover .plus-v {
   background-color: #40BBC2;
 }
 
-.more-options .plus .plus-h, .more-options .plus .plus-v {
+.more-options .cross .plus-h, .more-options .cross .plus-v {
   background-color: #fff;
 }
 
@@ -431,14 +440,14 @@ body {
   cursor: pointer;
 }
 
-.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp {
+.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp {
   padding: 60px 115px 70px;
   box-shadow: 0px 20px 20px rgba(136, 136, 136, 0.25);
   border-radius: 50px;
   border: 1px solid #fff;
 }
 
-.reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular {
+.reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular, .update-wrapp .title-regular {
   margin-bottom: 50px;
 }
 
@@ -704,11 +713,11 @@ body {
   font-size: 20px;
 }
 
-.section-create-task .create-task-wrapp {
+.section-create-task .create-task-wrapp, .section-create-task .update-wrapp, .section-update-task .create-task-wrapp, .section-update-task .update-wrapp {
   background-color: #fff;
 }
 
-.section-create-task .new-task {
+.section-create-task .new-task, .section-create-task .update-task, .section-update-task .new-task, .section-update-task .update-task {
   max-width: 100%;
   width: 100%;
   border-bottom: 1px solid #333;
@@ -718,11 +727,11 @@ body {
   padding-top: 15px;
 }
 
-.section-create-task .form__item-wrapp {
+.section-create-task .form__item-wrapp, .section-update-task .form__item-wrapp {
   width: 100%;
 }
 
-.section-create-task .form .button {
+.section-create-task .form .button, .section-update-task .form .button {
   margin: 0;
 }
 /*# sourceMappingURL=style.css.map */

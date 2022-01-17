@@ -95,7 +95,7 @@
     background-color: $color-bg-button;
     color: $color-white;
     border-radius: 20px;
-    padding: 23px 33px 0;
+    padding: 0 33px 0;
     position: absolute;
     justify-content: space-between;
     display: none;
@@ -105,10 +105,17 @@
     right: 0;
     bottom: 0;
 
-    span {
-        margin-bottom: 15px;
+    &__allelem {
+        align-self: center;
         cursor: pointer;
+        margin-bottom: -5px;
+
+        span {
+            margin-bottom: 5px;
+        }
     }
+
+    
     
     &__elem {
         transition: all 0.3s;
@@ -118,9 +125,13 @@
         }
     }
 
-    .plus {
+    .cross {
         transform: rotate(45deg);
-
+        position: absolute;
+        top: 23px;
+        right: 33px;
+        cursor: pointer;
+        
         &:hover {
             .plus-h, .plus-v {
                 background-color: $color-hover;
@@ -233,7 +244,7 @@
 
 // style for registration, sign in, edit-profile-wrapp, create-task-wrapp
 
-.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp {
+.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp {
     padding: 60px 115px 70px;
     box-shadow: 0px 20px 20px rgba(136, 136, 136, 0.25);
     border-radius: 50px;
@@ -541,15 +552,15 @@
 
 // style for section create task
 
-.section-create-task {
+.section-create-task, .section-update-task {
 
    @extend %visibility-section;
 
-    .create-task-wrapp {
+    .create-task-wrapp, .update-wrapp {
         background-color: $color-white;
     }
 
-    .new-task {
+    .new-task, .update-task {
         max-width: 100%;
         width: 100%;
         border-bottom: 1px solid $color-border;

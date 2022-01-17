@@ -19,7 +19,6 @@ if(clickEditProfile !== null) {
         editProfile.classList.add('open-section');
         body.classList.add('hiden');
     }
-
 }
 
 // scripts for open add new task
@@ -32,7 +31,6 @@ if(clickAddTask !== null) {
         createTask.classList.add('open-section');
         body.classList.add('hiden');
     }
-
 }
 
 // scripts for open sign in

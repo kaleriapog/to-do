@@ -2,6 +2,14 @@
 let clickAddTask = document.querySelector('.js-button-add-task');
 let tokenLogUser = localStorage.getItem('userToken');
 let parentItemsTask = document.querySelector('.js-to-do');
+let parentItemsTaskСomplited = document.querySelector('.js-complited');
+let wrappListToDo = document.querySelector('.tasks-lists-wrapp');
+let newTask = document.querySelector('.new-task');
+const clickForUpdateTask = document.querySelectorAll('.js-update-task');
+const parentWrappTask = document.querySelectorAll('.tasks-lists__items');
+let updateTask = document.querySelector('.section-update-task');
+let textareaUpdateTask = document.querySelector('.update-task');
+const buttonUpdateTask = document.querySelector('.js-button-update-task');
 
 let myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${tokenLogUser}`);
@@ -10,15 +18,25 @@ myHeaders.append("Content-Type", "application/json");
 // дубликат, переделать
 const body = document.querySelector('body');
 const createTask = document.querySelector('.section-create-task');
+const clickToAddTask = document.querySelector('.tasks-lists__add-task');
+const complited = document.querySelector('.js-complited');
 
+// конец дубликат, переделать
+
+// сброс знаения поля заполнения при создании дела
+clickToAddTask.addEventListener('click', () => {
+    newTask.value = '';
+})
+
+// добавить задачу
 if(createTask !== null) {
 
     clickAddTask.addEventListener('click', addTask);
 
     function addTask() {
+        
         let newTask = document.querySelector('.new-task').value;
-        // console.log(newTask);
-
+        
         let raw = JSON.stringify({
             "description": newTask
         });
@@ -33,107 +51,227 @@ if(createTask !== null) {
         fetch("https://api-nodejs-todolist.herokuapp.com/task", requestOptions)
         .then(response => response.text())
         .then(result => {
-            // console.log(JSON.parse(result).data.description),
+            console.log(JSON.parse(result)),
             createTask.classList.remove('open-section'),
             body.classList.remove('hiden'),
-            addTaskInner(JSON.parse(result).data.description)
-        
+            addTaskInner(JSON.parse(result).data.description, JSON.parse(result).data._id)
         })
         .catch(error => console.log('error', error));
     }
+}
+// конец добавать задачу  
 
-    function addTaskInner(descriptionText) {
-        let idRandom = Math.random().toString(36).substr(2, 15);
-        let taskItems = `<div id="${idRandom}" class="tasks-lists__item js-task" draggable="true">
-        <p class="tasks-lists__text">${descriptionText}</p>
-            <span class="icon-circles">
-                <span class="icon-circle"></span>
-                <span class="icon-circle"></span>
-                <span class="icon-circle"></span>
+// HTML вид вывода задач
+function addTaskInner(descriptionText, idItem) {
+    let taskItems = `<div id="${idItem}" class="tasks-lists__item js-task" draggable="true">
+    <p class="tasks-lists__text">${descriptionText}</p>
+        <span class="icon-circles">
+            <span class="icon-circle"></span>
+            <span class="icon-circle"></span>
+            <span class="icon-circle"></span>
+        </span>
+        <div class="more-options js-options">
+            <span class="more-options__allelem">
+                <span class="more-options__elem js-update-task">Edit</span>
+                <span class="more-options__elem js-delete-task">Delete</span>
             </span>
-            <div class="more-options js-options">
-                <span>
-                    <span class="more-options__elem">Edit</span>
-                    <span class="more-options__elem js-delete-task">Delete</span>
-                </span>
-                <span class="plus cross">
-                    <span class="plus-v"></span>
-                    <span class="plus-h"></span>
-                </span>
-            </div>
-        </div>`;
+            <span class="plus cross">
+                <span class="plus-v"></span>
+                <span class="plus-h"></span>
+            </span>
+        </div>
+    </div>`;
 
-        parentItemsTask.innerHTML += taskItems
-    }
+    parentItemsTask.innerHTML += taskItems;
+}
+//конец HTML видa вывода задач
 
-    // конец добавать задачу
+// вывести все задачи
+function getAllTask() {
 
-    // вывести все задачи
-
-    function getAllTask() {
-
-        let requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-        };
-
-        fetch("https://api-nodejs-todolist.herokuapp.com/task", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            console.log(JSON.parse(result))
-                JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
-                    addTaskInner(elem.description)
-                })
-            })
-        .catch(error => console.log('error', error));
-    }
-    getAllTask();
-
-    // удаление задач по айди
     let requestOptions = {
-    method: 'DELETE',
+    method: 'GET',
     headers: myHeaders,
     redirect: 'follow'
     };
 
-
-    
-    // let idDelete = '61c5d146a891c40017f8f048';
-    
-    // const allListsItems = document.querySelectorAll('.tasks-lists__items')
-
-    // allListsItems.forEach(function(item){
-
-    //     item.addEventListener('click', openMoreOptions, true);
-
-    //     function openMoreOptions(e) {
-
-    //         const iconCirclesOpenMoreOptions = document.querySelectorAll('.icon-circles');
-
-    //         iconCirclesOpenMoreOptions.forEach(function(item){
-    //             item.addEventListener('click', openMoreOptions);
-    //             console.log(item.target)
-        
-    //             function openMoreOptions(e) {
-    //                 let deleteTask = document.querySelectorAll('.js-delete-task');
-    //                 console.log(e.target)
-    //             }
-    //         })
-    //     }
-    // })
- 
-
-   
-
-
-    // allTask.forEach(function(item){
-    //     item.addEventListener('click')
-    // })
-
-    // fetch(`https://api-nodejs-todolist.herokuapp.com/task/${idDelete}`, requestOptions)
-    // .then(response => response.text())
-    // .then(result => console.log(result))
-    // .catch(error => console.log('error', error));
-
+    fetch("https://api-nodejs-todolist.herokuapp.com/task?completed=false", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        // console.log(JSON.parse(result))
+            JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
+                addTaskInner(elem.description, elem._id)
+            })
+            getTaskforDelete()
+        })
+    .catch(error => console.log('error', error));
 }
+
+getAllTask();
+// конец вывести все задачи
+
+// получить айди задачи при клике на удалить и удалить из API, HTML
+function getTaskforDelete() {
+        
+    parentWrappTask.forEach(function(item){
+
+        item.addEventListener('click', deleteElementById);
+
+        function deleteElementById(e) {
+
+            // провека если клик был на класс с удалением
+            if (e.target.classList.contains('js-delete-task')) {
+
+                let getIdForDeleteAPI = e.target.closest('.tasks-lists__item').id;
+                let getIdForDeleteHtml = document.getElementById(`${getIdForDeleteAPI}`)
+                
+                // удаление задач по айди
+                let requestOptions = {
+                    method: 'DELETE',
+                    headers: myHeaders,
+                    redirect: 'follow'
+                };
+
+                // удаление задачи из API
+                if(getIdForDeleteAPI.length !== 0) {    
+                    fetch(`https://api-nodejs-todolist.herokuapp.com/task/${getIdForDeleteAPI}`, requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+                }
+
+                // удаление задачи из HTML
+                getIdForDeleteHtml.remove();
+                console.log('задача удалена успешно из API, HTML');
+            }
+        }       
+    })
+}
+// конец удаления задач при клике на удалить
+
+// редактирования задач
+parentWrappTask.forEach(function(item){
+
+    item.addEventListener('click', openFormUpdate);
+
+    function openFormUpdate(e) {
+        
+        // провека если клик был на класс с редактированием
+        if (e.target.classList.contains('js-update-task')) {
+
+            // открыть поле для редактирования
+            updateTask.classList.add('open-section');
+            body.classList.add('hiden');
+
+            // получить текст дела
+            let getIdForUpdate = e.target.closest('.tasks-lists__item').id;
+            let getTextForUpdate = e.target.closest('.tasks-lists__item').querySelector('.tasks-lists__text').textContent;
+
+            // записать текст дела в открытое поле для редактирования
+            textareaUpdateTask.value = getTextForUpdate;
+
+            // получить новый текст дела в открытом поле для редактирования(новый введенный пользователем текст)
+            buttonUpdateTask.addEventListener('click', getNewTextTask);
+
+            function getNewTextTask() {
+
+                let newTextUpdate = textareaUpdateTask.value;
+                let getIdForUpdateAPI = e.target.closest('.tasks-lists__item').id;
+                let getIdForUpdateHtml = document.getElementById(`${getIdForUpdateAPI}`)
+                
+                //  добавить новый текст в API и HTML
+                var raw = JSON.stringify({
+                    "description": newTextUpdate
+                });
+                  
+                var requestOptions = {
+                    method: 'PUT',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+                  
+                fetch(`https://api-nodejs-todolist.herokuapp.com/task/${getIdForUpdateAPI}`, requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result)
+                    getIdForUpdateHtml.querySelector('.tasks-lists__text').textContent = newTextUpdate // записываем в хтмл новое значение
+                    updateTask.classList.remove('open-section');
+                    body.classList.remove('hiden');
+                    getIdForUpdateHtml.classList.remove('open-more-options');
+                })
+                .catch(error => console.log('error', error));
+            }            
+            console.log('открыто поле для редактирования ' + getIdForUpdate)
+        }
+    }       
+})
+// конец редактирования задач
+
+// при переносе дело становится выполненым
+complited.addEventListener('drop', completedTask);
+
+function completedTask(e) {
+    let itemId = e.dataTransfer.getData('id');
+    let draggedElementId = document.getElementById(itemId).id;
+    console.log ('API onondrop ' + draggedElementId);
+
+    var raw = JSON.stringify({
+        "completed": true
+      });
+      
+      var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      
+      fetch(`https://api-nodejs-todolist.herokuapp.com/task/${draggedElementId}`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
+
+// вывести выполненые задачи
+let requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+};
+  
+fetch("https://api-nodejs-todolist.herokuapp.com/task?completed=true", requestOptions)
+.then(response => response.text())
+.then(result => {
+    // console.log(JSON.parse(result))
+        JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
+            addTaskInnerCompleted(elem.description, elem._id)
+        })
+        getTaskforDelete()
+    })
+.catch(error => console.log('error', error));
+
+// HTML вид вывода задач
+function addTaskInnerCompleted(descriptionText, idItem) {
+    let taskItems = `<div id="${idItem}" class="tasks-lists__item js-task" draggable="true">
+    <p class="tasks-lists__text">${descriptionText}</p>
+        <span class="icon-circles">
+            <span class="icon-circle"></span>
+            <span class="icon-circle"></span>
+            <span class="icon-circle"></span>
+        </span>
+        <div class="more-options js-options">
+            <span class="more-options__allelem">
+                <span class="more-options__elem js-update-task">Edit</span>
+                <span class="more-options__elem js-delete-task">Delete</span>
+            </span>
+            <span class="plus cross">
+                <span class="plus-v"></span>
+                <span class="plus-h"></span>
+            </span>
+        </div>
+    </div>`;
+
+    parentItemsTaskСomplited.innerHTML += taskItems;
+}
+//конец HTML видa вывода задач
