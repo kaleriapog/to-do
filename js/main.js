@@ -35,13 +35,16 @@ if(clickAddTask !== null) {
 
 // scripts for open sign in
 
-if(clickSignIn !== null) {
+if(clickSignIn) {
 
     clickSignIn.addEventListener('click', openSignIn);
 
     function openSignIn() {
+
         signIn.classList.add('open-section');
-        if(reg != null) {
+
+        if(reg) {
+
             reg.classList.remove('open-section');
         }    
     }
@@ -49,13 +52,16 @@ if(clickSignIn !== null) {
 
 // scripts for open registration
 
-if(clickReg !== null) {
+if(clickReg) {
 
     clickReg.addEventListener('click', openReg);
 
     function openReg() {
+
         reg.classList.add('open-section');
-        if(signIn != null) {
+
+        if(signIn) {
+            
             signIn.classList.remove('open-section');
         }    
     }

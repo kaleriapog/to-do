@@ -20,13 +20,16 @@ const body = document.querySelector('body');
 const createTask = document.querySelector('.section-create-task');
 const clickToAddTask = document.querySelector('.tasks-lists__add-task');
 const complited = document.querySelector('.js-complited');
-
+const toDo = document.querySelector('.js-to-do');
 // конец дубликат, переделать
 
 // сброс знаения поля заполнения при создании дела
-clickToAddTask.addEventListener('click', () => {
-    newTask.value = '';
-})
+if (clickToAddTask) {
+
+    clickToAddTask.addEventListener('click', () => {
+        newTask.value = '';
+    })
+}
 
 // добавить задачу
 if(createTask !== null) {
@@ -86,28 +89,30 @@ function addTaskInner(descriptionText, idItem) {
 }
 //конец HTML видa вывода задач
 
-// вывести все задачи
-function getAllTask() {
+// вывести все не выполненные задачи
+if (parentItemsTask) {
+    function getAllTask() {
 
-    let requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
+        let requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
 
-    fetch("https://api-nodejs-todolist.herokuapp.com/task?completed=false", requestOptions)
-    .then(response => response.text())
-    .then(result => {
-        // console.log(JSON.parse(result))
-            JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
-                addTaskInner(elem.description, elem._id)
+        fetch("https://api-nodejs-todolist.herokuapp.com/task?completed=false", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            // console.log(JSON.parse(result))
+                JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
+                    addTaskInner(elem.description, elem._id)
+                })
+                getTaskforDelete()
             })
-            getTaskforDelete()
-        })
-    .catch(error => console.log('error', error));
-}
+        .catch(error => console.log('error', error));
+    }
 
-getAllTask();
+    getAllTask();
+}    
 // конец вывести все задачи
 
 // получить айди задачи при клике на удалить и удалить из API, HTML
@@ -208,51 +213,91 @@ parentWrappTask.forEach(function(item){
 })
 // конец редактирования задач
 
-// при переносе дело становится выполненым
-complited.addEventListener('drop', completedTask);
+// при переносе в выполненные
+if (complited) {
 
-function completedTask(e) {
-    let itemId = e.dataTransfer.getData('id');
-    let draggedElementId = document.getElementById(itemId).id;
-    console.log ('API onondrop ' + draggedElementId);
+    complited.addEventListener('drop', completedTask);
 
-    var raw = JSON.stringify({
-        "completed": true
-      });
-      
-      var requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
-      
-      fetch(`https://api-nodejs-todolist.herokuapp.com/task/${draggedElementId}`, requestOptions)
+    function completedTask(e) {
+
+        let itemId = e.dataTransfer.getData('id');
+        let draggedElementId = document.getElementById(itemId).id;
+        console.log ('API onondrop in complited ' + draggedElementId);
+
+        var raw = JSON.stringify({
+            "completed": true
+        });
+        
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        
+        fetch(`https://api-nodejs-todolist.herokuapp.com/task/${draggedElementId}`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
+    }
 }
+// конец при переносе в выполненные
+
+// при переносе в невыполненные
+if (toDo) {
+
+    toDo.addEventListener('drop', notCompletedTask);
+
+    function notCompletedTask(e) {
+        let itemId = e.dataTransfer.getData('id');
+        let draggedElementId = document.getElementById(itemId).id;
+        console.log ('API onondrop in todo ' + draggedElementId);
+
+        var raw = JSON.stringify({
+            "completed": false
+        });
+        
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        
+        fetch(`https://api-nodejs-todolist.herokuapp.com/task/${draggedElementId}`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    }
+}
+// конец при переносе в невыполненные
 
 // вывести выполненые задачи
-let requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-};
-  
-fetch("https://api-nodejs-todolist.herokuapp.com/task?completed=true", requestOptions)
-.then(response => response.text())
-.then(result => {
-    // console.log(JSON.parse(result))
-        JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
-            addTaskInnerCompleted(elem.description, elem._id)
+if(parentItemsTaskСomplited) {
+
+    let requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+    
+    fetch("https://api-nodejs-todolist.herokuapp.com/task?completed=true", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        // console.log(JSON.parse(result))
+            JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
+                addTaskInnerCompleted(elem.description, elem._id)
+            })
+            getTaskforDelete()
         })
-        getTaskforDelete()
-    })
-.catch(error => console.log('error', error));
+    .catch(error => console.log('error', error));
+}    
+// конец вывести выполненые задачи
+
 
 // HTML вид вывода задач
 function addTaskInnerCompleted(descriptionText, idItem) {
+    
     let taskItems = `<div id="${idItem}" class="tasks-lists__item js-task" draggable="true">
     <p class="tasks-lists__text">${descriptionText}</p>
         <span class="icon-circles">

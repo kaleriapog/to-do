@@ -190,7 +190,7 @@ input[type=number] {
   padding: 45px 85px;
 }
 
-.section-signin, .section-edit-profile, .section-create-task, .section-update-task {
+.section-signin, .section-reg, .success-login, .section-edit-profile, .section-create-task, .section-update-task {
   width: 100%;
   visibility: hidden;
   opacity: 0;
@@ -310,6 +310,41 @@ body {
   transform: translateX(-50%);
 }
 
+.cross {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 23px;
+  right: 33px;
+  cursor: pointer;
+  display: block;
+}
+
+.cross:hover .plus-h, .cross:hover .plus-v {
+  background-color: #40BBC2;
+}
+
+.cross .plus-h, .cross .plus-v {
+  background-color: #fff;
+}
+
+.error-item {
+  display: block;
+  font-size: 14px;
+  line-height: 1;
+  color: #f74343;
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.error-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
 .more-options {
   background-color: #333;
   color: #fff;
@@ -340,22 +375,6 @@ body {
 
 .more-options__elem:hover {
   color: #40BBC2;
-}
-
-.more-options .cross {
-  transform: rotate(45deg);
-  position: absolute;
-  top: 23px;
-  right: 33px;
-  cursor: pointer;
-}
-
-.more-options .cross:hover .plus-h, .more-options .cross:hover .plus-v {
-  background-color: #40BBC2;
-}
-
-.more-options .cross .plus-h, .more-options .cross .plus-v {
-  background-color: #fff;
 }
 
 .open-more-options .more-options {
@@ -415,11 +434,16 @@ body {
   display: block;
 }
 
+.form .input-wrapp {
+  position: relative;
+}
+
 .form__items-wrapp {
   margin-bottom: 45px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .form__button-wrapp {
@@ -440,26 +464,57 @@ body {
   cursor: pointer;
 }
 
-.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp {
+.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp, .login-wrapp {
   padding: 60px 115px 70px;
   box-shadow: 0px 20px 20px rgba(136, 136, 136, 0.25);
   border-radius: 50px;
   border: 1px solid #fff;
-}
-
-.reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular, .update-wrapp .title-regular {
-  margin-bottom: 50px;
-}
-
-.section-signin .signin-wrapp {
   background-color: #fff;
 }
 
-.section-signin .signin-wrapp .form__items-wrapp {
+.reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular, .update-wrapp .title-regular, .login-wrapp .title-regular {
+  margin-bottom: 50px;
+}
+
+.success-login__title {
+  text-align: center;
+  font-size: 35px;
+  line-height: 1.2;
+  margin-bottom: 100px;
+}
+
+.success-login__img {
+  max-height: 750px;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.success-login .cross {
+  position: static;
+  transform: scale(1.5) rotate(45deg);
+  margin-left: auto;
+}
+
+.success-login .cross span {
+  background-color: #000;
+}
+
+.success-login-open {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.section-signin .signin-wrapp, .section-reg .signin-wrapp, .success-login .signin-wrapp {
+  background-color: #fff;
+}
+
+.section-signin .signin-wrapp .form__items-wrapp, .section-reg .signin-wrapp .form__items-wrapp, .success-login .signin-wrapp .form__items-wrapp {
   justify-content: center;
 }
 
-.section-signin .signin-wrapp .form input {
+.section-signin .signin-wrapp .form input, .section-reg .signin-wrapp .form input, .success-login .signin-wrapp .form input {
   max-width: 452px;
 }
 
