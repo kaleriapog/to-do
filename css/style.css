@@ -327,7 +327,7 @@ body {
   background-color: #fff;
 }
 
-.error-item {
+.error-item, .updated-successfully {
   display: block;
   font-size: 14px;
   line-height: 1;
@@ -340,9 +340,25 @@ body {
   transition: all 0.3s;
 }
 
-.error-visible {
+.updated-successfully {
+  color: #48a868;
+  width: 100%;
+  bottom: -10px;
+  font-size: 20px;
+}
+
+.error-visible, .successful-visible, .send-img-visible {
   visibility: visible;
   opacity: 1;
+}
+
+.error-validate {
+  right: 0;
+}
+
+.error-edit-profile {
+  width: 100%;
+  bottom: -5px;
 }
 
 .more-options {
@@ -464,7 +480,7 @@ body {
   cursor: pointer;
 }
 
-.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp, .login-wrapp {
+.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp, .login-wrapp, .send-img__wrapp {
   padding: 60px 115px 70px;
   box-shadow: 0px 20px 20px rgba(136, 136, 136, 0.25);
   border-radius: 50px;
@@ -472,7 +488,7 @@ body {
   background-color: #fff;
 }
 
-.reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular, .update-wrapp .title-regular, .login-wrapp .title-regular {
+.reg-wrapp .title-regular, .signin-wrapp .title-regular, .edit-profile-wrapp .title-regular, .create-task-wrapp .title-regular, .update-wrapp .title-regular, .login-wrapp .title-regular, .send-img__wrapp .title-regular {
   margin-bottom: 50px;
 }
 
@@ -748,6 +764,21 @@ body {
 
 .section-edit-profile .edit-profile-wrapp {
   background-color: #fff;
+  position: relative;
+}
+
+.section-edit-profile .cross-edit-profile {
+  transform: scale(1.5) rotate(45deg);
+  top: 40px;
+  right: 48px;
+}
+
+.section-edit-profile .cross-edit-profile span {
+  background-color: #000;
+}
+
+.section-edit-profile .form {
+  position: relative;
 }
 
 .section-edit-profile .form__items-wrapp {
@@ -766,6 +797,113 @@ body {
 
 .section-edit-profile .form__item-wrapp input[placeholder] {
   font-size: 20px;
+}
+
+.section-edit-profile .form__item-wrapp-update {
+  width: 100%;
+  max-width: 100%;
+}
+
+.section-edit-profile .form__img-update {
+  width: 100%;
+  height: 90px;
+  max-width: 90px;
+  max-height: 90px;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  background-color: #000;
+  margin: 0 auto 20px;
+  cursor: pointer;
+}
+
+.section-edit-profile .form__img-update::after {
+  content: '';
+  display: block;
+  width: 100%;
+  max-width: 46px;
+  max-height: 46px;
+  height: 90%;
+  background-image: url("../images/icon-camera.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.section-edit-profile .form__img-update::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #999;
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.section-edit-profile .form .send-img__wrapp {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: -5px;
+  top: 0;
+  left: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  border: 1px solid #ccc;
+  transition: all 0.3s;
+}
+
+.section-edit-profile .form .send-img__wrapp .update-photo {
+  max-width: 270px;
+}
+
+.section-edit-profile .form .send-img__wrapp input {
+  border: none;
+  margin-bottom: 0;
+}
+
+.section-edit-profile .form .send-img__wrapp .cross-update-photo {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.section-edit-profile .form .send-img__wrapp .cross-update-photo span {
+  background-color: #000;
+}
+
+.section-edit-profile .form .send-img__wrapp .cross-update-photo:hover span {
+  background-color: #40BBC2;
+}
+
+.section-edit-profile .form .send-img__wrapp .button-update-photo {
+  max-width: 100px;
+  max-height: 50px;
+  padding: 10px 5px;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 168, 104, 0.5);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.section-edit-profile .form .send-img__wrapp .button-update-photo:hover {
+  background-color: #02a868;
+}
+
+.section-edit-profile .form .send-img-visible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .section-create-task .create-task-wrapp, .section-create-task .update-wrapp, .section-update-task .create-task-wrapp, .section-update-task .update-wrapp {

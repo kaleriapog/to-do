@@ -1,3 +1,4 @@
+// import {showUserDetails} from './edit-profile';
 
 const editProfile = document.querySelector('.section-edit-profile');
 const clickEditProfile = document.querySelector('.user-info__edit');
@@ -8,22 +9,41 @@ const signIn = document.querySelector('.section-signin');
 const clickSignIn = document.querySelector('.singin');
 const reg = document.querySelector('.section-reg');
 const clickReg = document.querySelector('.reg');
+const crossEditProfile = document.querySelector('.cross-edit-profile');
+let fieldPassword = document.getElementById('password');
+const clickForOpenBlockUpdate =document.querySelector('.form__img-update');
+const crossIconCloseMoreOptions = document.querySelectorAll('.cross');
+const allListsItems = document.querySelectorAll('.tasks-lists__items');
+const sendUpdateBlock = document.querySelector('.send-img__wrapp');
+const closeUpdatePhoto =document.querySelector('.cross-update-photo');
 
 // scripts for open edit profile
+if (clickEditProfile !== null) {
 
-if(clickEditProfile !== null) {
+    clickEditProfile.addEventListener('click', openBlockEditProfile);
 
-    clickEditProfile.addEventListener('click', openEditProfile);
+    function openBlockEditProfile() {
 
-    function openEditProfile() {
         editProfile.classList.add('open-section');
         body.classList.add('hiden');
+        fieldPassword.value = '';
     }
 }
 
-// scripts for open add new task
+// script for close edit profile
+if (editProfile) {
 
-if(clickAddTask !== null) {
+    crossEditProfile.addEventListener('click', closeBlockEditProfile);
+
+    function closeBlockEditProfile() {
+        
+        editProfile.classList.remove('open-section');
+        body.classList.remove('hiden');
+        // showUserDetails();
+    }
+}
+// scripts for open add new task
+if (clickAddTask !== null) {
 
     clickAddTask.addEventListener('click', openCreateTask);
 
@@ -34,8 +54,7 @@ if(clickAddTask !== null) {
 }
 
 // scripts for open sign in
-
-if(clickSignIn) {
+if (clickSignIn) {
 
     clickSignIn.addEventListener('click', openSignIn);
 
@@ -51,8 +70,7 @@ if(clickSignIn) {
 }
 
 // scripts for open registration
-
-if(clickReg) {
+if (clickReg) {
 
     clickReg.addEventListener('click', openReg);
 
@@ -60,36 +78,50 @@ if(clickReg) {
 
         reg.classList.add('open-section');
 
-        if(signIn) {
+        if (signIn) {
             
             signIn.classList.remove('open-section');
         }    
     }
 }
 
-const crossIconCloseMoreOptions = document.querySelectorAll('.cross');
-const allListsItems = document.querySelectorAll('.tasks-lists__items');
-
-if(allListsItems.length !== 0) { 
+if (allListsItems.length !== 0) { 
 
     // scripts for open more options
-
     allListsItems.forEach(function(item){
 
         item.addEventListener('click', openMoreOptions, true);
 
         function openMoreOptions(e) {
        
-            if(e.target.matches('.icon-circles, .icon-circle')) {
+            if (e.target.matches('.icon-circles, .icon-circle')) {
                 console.log('получилось открыть опции');
                 e.target.closest('.tasks-lists__item').classList.add('open-more-options');
                 // e.target.parentNode.classList.add('open-more-options');
             }
 
-            if(e.target.matches('.cross, .plus-v, .plus-h')) {
+            if (e.target.matches('.cross, .plus-v, .plus-h')) {
                 console.log('получилось закрыть опции');
                 e.target.closest('.tasks-lists__item').classList.remove('open-more-options');
             }
         }
     })
+}
+
+// scripts for open block update
+if (clickForOpenBlockUpdate) {
+
+    clickForOpenBlockUpdate.addEventListener('click', openBlockUpdate);
+
+    function openBlockUpdate() {
+
+        sendUpdateBlock.classList.add('send-img-visible');
+    }
+
+    closeUpdatePhoto.addEventListener('click', closeBlockUpdate);
+
+    function closeBlockUpdate () {
+
+        sendUpdateBlock.classList.remove('send-img-visible');
+    }
 }

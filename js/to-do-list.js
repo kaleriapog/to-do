@@ -294,7 +294,6 @@ if(parentItemsTaskСomplited) {
 }    
 // конец вывести выполненые задачи
 
-
 // HTML вид вывода задач
 function addTaskInnerCompleted(descriptionText, idItem) {
     

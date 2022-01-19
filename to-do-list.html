@@ -39,7 +39,7 @@
                     <div class="profile-info">
                         <div class="user-info">
                             <div class="user-info__img">
-                                <img alt="photo user" src="./images/img.png">
+                                <img class="user-info-photo" alt="photo user" src="./images/img.png">
                             </div>
                             <span class="user-info__name">Mr. Yarick</span>
                             <span class="icon-triangle"></span>
@@ -63,28 +63,47 @@
         <section class="section-edit-profile">
             <div class="w-small">
                 <div class="edit-profile-wrapp">
+                    <span class="plus cross cross-edit-profile">
+                        <span class="plus-v"></span>
+                        <span class="plus-h"></span>
+                    </span>
                     <span class="title-regular">Profil</span>
                     <form name="editform" class="form">
                         <div class="form__items-wrapp">
+                            <div class="form__item-wrapp form__item-wrapp-update">
+                                <div class="form__img-update">
+                                    <img src="./images/img.png" alt="photo">
+                                </div>
+                                <div class="send-img__wrapp">
+                                    <input class="update-photo" id="update-photo" type="file" name="send-img-profile">
+                                    <input class="button-update-photo" type="submit" value="Update">
+                                    <span class="plus cross cross-update-photo">
+                                        <span class="plus-v"></span>
+                                        <span class="plus-h"></span>
+                                    </span>
+                                </div>
+                            </div>                            
                             <div class="form__item-wrapp">
                                 <label for="name">Name</label>
-                                <input id="name" type="text" placeholder="Name">
+                                <input id="name" class="edit-profile-name" type="text" placeholder="Name">
                             </div>
                             <div class="form__item-wrapp">
                                 <label for="email">Email</label>
-                                <input id="email" type="email" placeholder="Email">
+                                <input id="email" class="edit-profile-email" type="email" placeholder="Email">
                             </div>
                             <div class="form__item-wrapp">
                                 <label for="age">Age</label>
-                                <input id="age" type="number" placeholder="Age">
+                                <input id="age" class="edit-profile-age" type="number" placeholder="Age">
                             </div>
                             <div class="form__item-wrapp">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" placeholder="Password">
+                                <input id="password" class="edit-profile-password" type="password" placeholder="Password">
                             </div>
+                            <span class="error-item error-edit-profile">Fields must not be empty</span>
+                            <span class="updated-successfully">Profile updated successfully</span>
                         </div>
                         <div class="form__button-wrapp">
-                            <button type="submit" class="button">Save</button>
+                            <button type="submit" class="button button-edit-profile">Save</button>
                         </div>
                     </form>
                 </div>

@@ -110,11 +110,11 @@
     }
 }
 
-.error-item {
+.error-item, .updated-successfully {
     display: block;
     font-size: 14px;
     line-height: 1;
-    color: #f74343;
+    color: $color-not-successful;
     text-align: center;
     position: absolute;
     bottom: 5px;
@@ -123,9 +123,25 @@
     transition: all 0.3s;
 }
 
-.error-visible {
+.updated-successfully {
+    color: $color-successful;
+    width: 100%;
+    bottom: -10px;
+    font-size: 20px;
+}
+
+.error-visible, .successful-visible, .send-img-visible {
     visibility: visible;
     opacity: 1;
+}
+
+.error-validate {
+    right: 0;
+}
+
+.error-edit-profile {
+    width: 100%;
+    bottom: -5px;
 }
 
 .more-options {
@@ -266,7 +282,7 @@
 
 // style for registration, sign in, edit-profile-wrapp, create-task-wrapp
 
-.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp, .login-wrapp {
+.reg-wrapp, .signin-wrapp, .edit-profile-wrapp, .create-task-wrapp, .update-wrapp, .login-wrapp, .send-img__wrapp {
     padding: 60px 115px 70px;
     box-shadow: 0px 20px 20px rgba(136, 136, 136, 0.25);
     border-radius: 50px;
@@ -579,10 +595,22 @@
    @extend %visibility-section;
 
     .edit-profile-wrapp {
-        background-color: $color-white;
+        background-color: $color-white;        
+        position: relative;
+    }
+
+    .cross-edit-profile {
+       transform: scale(1.5) rotate(45deg);
+       top: 40px;
+       right: 48px;
+
+        span {
+            background-color: $color-black;
+        }
     }
 
     .form {
+        position: relative;
 
         &__items-wrapp {
             display: flex;
@@ -600,6 +628,115 @@
                     font-size: 20px;
                 }
             }
+        }
+
+        &__item-wrapp-update {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        &__img-update {
+            width: 100%;
+            height: 90px;
+            max-width: 90px;
+            max-height: 90px;
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            background-color: $color-black;
+            margin: 0 auto 20px;
+            cursor: pointer;            
+        }
+
+        &__img-update::after {
+            content: '';
+            display: block;
+            width: 100%;
+            max-width: 46px;
+            max-height: 46px;
+            height: 90%;
+            background-image: url('../images/icon-camera.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &__img-update::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: $color-circle-bg;
+            opacity: 0.7;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    
+        .send-img__wrapp {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            right: -5px;
+            top: 0;
+            left: -5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 80px;
+            border: 1px solid $color-border-light;
+            transition: all 0.3s;
+
+            .update-photo {
+                max-width: 270px;
+            }
+
+            input {
+                border: none;
+                margin-bottom: 0;
+            }
+
+            .cross-update-photo {
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+
+                span {
+                    background-color: $color-black;                    
+                }
+
+                &:hover {
+                    span {
+                        background-color: $color-hover;
+                    }
+                }
+            }
+
+            .button-update-photo {
+                max-width: 100px;
+                max-height: 50px;
+                padding: 10px 5px;
+                font-size: 18px;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(2, 168, 104, 0.5);
+                border-radius: 10px;
+                transition: all 0.3s;
+
+                &:hover {
+                background-color: rgba(2, 168, 104, 1);
+                }
+            }
+        }   
+        
+        .send-img-visible {
+            visibility: visible;
+            opacity: 1;
         }
     }
 }
