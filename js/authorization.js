@@ -21,7 +21,6 @@ let errorSignin = document.querySelector('.error-signin');
 let errorUserExists = document.querySelector('.error-user-exists');
 let titleReg = document.querySelector('.title-reg-js');
 let errorValidate = document.querySelector('.error-validate');
-let buttonUpdatePhoto = document.querySelector('.button-update-photo');
 
 // дубликат переделать
 const signIn = document.querySelector('.section-signin');
@@ -146,7 +145,7 @@ if(formReg) {
 
                     if (result) { // если 400 то не result, проверка на наличие result
 
-                        localStorage.setItem('userToken', JSON.parse(result).token);
+                        // localStorage.setItem('userToken', JSON.parse(result).token);
                         console.log('успешно ' + JSON.parse(result).token);                
                         signIn.classList.add('open-section');
                         reg.classList.remove('open-section'); 
@@ -211,8 +210,10 @@ if(formSignin) {
                 } else {
 
                     localStorage.setItem('userToken', result.token);
+                    localStorage.setItem('userId', result.user._id); // добавляем id в локалстореж
+                    localStorage.setItem('userName', result.user.name); // добавляем имя
                     document.location.href = 'to-do-list.html';
-                    console.log('успешный вход ' + result.token);                    
+                    console.log('успешный вход ' + result.token, result.user._id);                    
                 }                
             })
             .catch(error => {
@@ -244,66 +245,11 @@ if (clickLogOut) {
         .then(response => response.text())
         .then(result => {
             localStorage.removeItem('userToken');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userId'); 
             document.location.href = 'index.html';
         })
         .catch(error => console.log('error', error));
     }
 }
 
-// загрузка фото профиля
-if (buttonUpdatePhoto) {
-
-    buttonUpdatePhoto.addEventListener('click', updateAvatar);
-
-    function updateAvatar() {
-
-        event.preventDefault();
-        let fileUpload = document.getElementById('update-photo');
-        console.log(fileUpload.files[0])
-            
-        let myHeaders = new Headers();
-        myHeaders.append("Authorization", `Bearer ${tokenLogUser}`);
-
-        let formdata = new FormData();
-        formdata.append("avatar", fileUpload.files[0], "blog-header.jpg");
-
-        let requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: formdata,
-        redirect: 'follow'
-        };
-
-        fetch("https://api-nodejs-todolist.herokuapp.com/user/me/avatar", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            let requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-            };
-              
-              fetch("https://api-nodejs-todolist.herokuapp.com/user/61e82cd83bc22600170c8e5a/avatar", requestOptions)
-                .then(response => response.text())
-                .then(result => {
-                    console.log(result);
-                    document.innerHTML = `<img src="${result.url}" alt="image for successful registration">`
-                })
-                .catch(error => console.log('error', error));
-            console.log(result)
-        })
-        .catch(error => console.log('error', error));
-    }
-}    
-// конец загрузка фото профиля  
-
-// получить картинку профиля из АПИ
-// let requestOptions = {
-//     method: 'GET',
-//     redirect: 'follow'
-//   };
-  
-//   fetch("https://api-nodejs-todolist.herokuapp.com/user/5ddccbec6b55da001759722c/avatar", requestOptions)
-//     .then(response => response.text())
-//     .then(result => console.log(result))
-//     .catch(error => console.log('error', error));
-// конец получить картинку профиля из АПИ

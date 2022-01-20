@@ -17,6 +17,10 @@ const allListsItems = document.querySelectorAll('.tasks-lists__items');
 const sendUpdateBlock = document.querySelector('.send-img__wrapp');
 const closeUpdatePhoto =document.querySelector('.cross-update-photo');
 
+// дубликат переделать
+let blockUserName = document.querySelector('.user-info__name');
+let pageTodo = document.querySelector('.page-to-do');
+
 // scripts for open edit profile
 if (clickEditProfile !== null) {
 
@@ -123,5 +127,21 @@ if (clickForOpenBlockUpdate) {
     function closeBlockUpdate () {
 
         sendUpdateBlock.classList.remove('send-img-visible');
+    }
+}
+
+// запрет на загрузку страницы TO-DO.HTML без логинизации, переотправка на вход
+if (pageTodo) {
+
+    if (!localStorage.getItem('userToken')) {
+
+        console.log('нет userToken')
+        document.location.href = 'index.html';
+    } 
+    
+    // отображать имя при загрузке страницы
+    if (localStorage.getItem('userName')) {
+
+        blockUserName.innerHTML = `<span>Mr. ${localStorage.getItem('userName')}</span>`;
     }
 }

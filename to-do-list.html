@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico"/>
 </head>
 <body class="body">
-    <div class="section-all-wrapp">
+    <div class="section-all-wrapp page-to-do">
         <section class="section-tasks-lists">
             <div class="w-regular">
                 <div class="tasks-lists-page">
@@ -38,22 +38,21 @@
                     </div>
                     <div class="profile-info">
                         <div class="user-info">
-                            <div class="user-info__img">
-                                <img class="user-info-photo" alt="photo user" src="./images/img.png">
+                            <div class="user-info__img">                             
                             </div>
-                            <span class="user-info__name">Mr. Yarick</span>
+                            <span class="user-info__name">load name...</span>
                             <span class="icon-triangle"></span>
                             <div class="user-info__more">
                                 <span class="user-info__edit">Edit profil</span>
                                 <span class="user-info__log-out js-log-out">Log Out</span>
                             </div>
-                        </div>
-                        <div class="progress-сompleted">
-                            <div class="progress-сompleted__wrapp">
-                                <div class="progress-сompleted__patch">
+                        </div>                        
+                        <div class="box progress-сompleted">
+                            <div class="progress" id="progress">
+                              <div class="inner">                                
                                     <span class="progress-сompleted__percent">77%</span>
-                                    <span>Completed</span>
-                                </div>
+                                    <span>Completed</span>                                
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -72,7 +71,6 @@
                         <div class="form__items-wrapp">
                             <div class="form__item-wrapp form__item-wrapp-update">
                                 <div class="form__img-update">
-                                    <img src="./images/img.png" alt="photo">
                                 </div>
                                 <div class="send-img__wrapp">
                                     <input class="update-photo" id="update-photo" type="file" name="send-img-profile">
@@ -147,5 +145,6 @@
         </section>
     </div>
     <script src="js/scripts.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.1/progressbar.min.js"></script>
 </body>
 </html>

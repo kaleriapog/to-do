@@ -10,6 +10,7 @@ const parentWrappTask = document.querySelectorAll('.tasks-lists__items');
 let updateTask = document.querySelector('.section-update-task');
 let textareaUpdateTask = document.querySelector('.update-task');
 const buttonUpdateTask = document.querySelector('.js-button-update-task');
+let allTaskForProgress;
 
 let myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${tokenLogUser}`);
@@ -103,11 +104,11 @@ if (parentItemsTask) {
         .then(response => response.text())
         .then(result => {
             // console.log(JSON.parse(result))
-                JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
-                    addTaskInner(elem.description, elem._id)
-                })
-                getTaskforDelete()
+            JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
+                addTaskInner(elem.description, elem._id)
             })
+            getTaskforDelete();
+        })   
         .catch(error => console.log('error', error));
     }
 
@@ -185,11 +186,11 @@ parentWrappTask.forEach(function(item){
                 let getIdForUpdateHtml = document.getElementById(`${getIdForUpdateAPI}`)
                 
                 //  добавить новый текст в API и HTML
-                var raw = JSON.stringify({
+                let raw = JSON.stringify({
                     "description": newTextUpdate
                 });
                   
-                var requestOptions = {
+                let requestOptions = {
                     method: 'PUT',
                     headers: myHeaders,
                     body: raw,
@@ -204,7 +205,7 @@ parentWrappTask.forEach(function(item){
                     updateTask.classList.remove('open-section');
                     body.classList.remove('hiden');
                     getIdForUpdateHtml.classList.remove('open-more-options');
-                })
+                })                
                 .catch(error => console.log('error', error));
             }            
             console.log('открыто поле для редактирования ' + getIdForUpdate)
@@ -288,13 +289,13 @@ if(parentItemsTaskСomplited) {
             JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
                 addTaskInnerCompleted(elem.description, elem._id)
             })
-            getTaskforDelete()
+            getTaskforDelete();
         })
     .catch(error => console.log('error', error));
 }    
 // конец вывести выполненые задачи
 
-// HTML вид вывода задач
+// HTML вид вывода выполненых задач задач
 function addTaskInnerCompleted(descriptionText, idItem) {
     
     let taskItems = `<div id="${idItem}" class="tasks-lists__item js-task" draggable="true">
@@ -318,4 +319,3 @@ function addTaskInnerCompleted(descriptionText, idItem) {
 
     parentItemsTaskСomplited.innerHTML += taskItems;
 }
-//конец HTML видa вывода задач
