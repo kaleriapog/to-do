@@ -46,8 +46,8 @@ if(formReg) {
     
     buttonReg.addEventListener('click', newUserRegistration);
 
-    function newUserRegistration() {
-        event.preventDefault();
+    function newUserRegistration(e) {
+        e.preventDefault();
         
         nameReg = document.getElementById('namereg').value;
         emailReg = document.getElementById('emailreg').value;

@@ -106,8 +106,7 @@ if (parentItemsTask) {
             // console.log(JSON.parse(result))
             JSON.parse(result).data.forEach(function(elem){ //elem это мой елемнт на который я вешаю форич
                 addTaskInner(elem.description, elem._id)
-            })
-            getTaskforDelete();
+            })            
         })   
         .catch(error => console.log('error', error));
     }
@@ -139,16 +138,17 @@ function getTaskforDelete() {
                 };
 
                 // удаление задачи из API
-                if(getIdForDeleteAPI.length !== 0) {    
+                if(getIdForDeleteAPI) { 
+                       
                     fetch(`https://api-nodejs-todolist.herokuapp.com/task/${getIdForDeleteAPI}`, requestOptions)
                     .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
-                }
-
-                // удаление задачи из HTML
-                getIdForDeleteHtml.remove();
-                console.log('задача удалена успешно из API, HTML');
+                    .then(result => {
+                        // удаление задачи из HTML
+                        getIdForDeleteHtml.remove();
+                        console.log('задача удалена успешно из API, HTML');
+                    })
+                    .catch(error => console.log('error', error));                    
+                }                
             }
         }       
     })

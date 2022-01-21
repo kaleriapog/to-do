@@ -435,7 +435,7 @@ body {
   justify-content: center;
 }
 
-.progress > .inner {
+.progress > .progress-inner {
   position: absolute;
   font-size: 20px;
   font-style: normal;

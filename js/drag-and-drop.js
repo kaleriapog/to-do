@@ -3,7 +3,6 @@ const toDo = document.querySelector('.js-to-do');
 const complited = document.querySelector('.js-complited');
 const taskToDo = document.querySelectorAll('.js-task');
 
-
 if(toDo !== null) {
   // reset
   toDo.addEventListener('dragover', allDrop); 
@@ -14,11 +13,6 @@ if(toDo !== null) {
   }
 
   document.addEventListener('dragstart', drag);
-  // при перетаскивании 
-  // taskToDo.forEach(function(task){
-  //     task.addEventListener('dragstart', drag);
-  // })
-  // taskToDo.ondragstart = drag;
 
   function drag (e){
     if (e.target.closest('.js-task')) {

@@ -191,7 +191,7 @@ if (buttonUpdatePhoto) {
               
               fetch(`https://api-nodejs-todolist.herokuapp.com/user/${idLogUser}/avatar`, requestOptions)
                 .then(response => response)
-                .then(result => {                   
+                .then(result => {                  
                     
                     blockUserImg.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                     blockUserImgUpdate.innerHTML = `<img src="${result.url}" alt="image avatar">`;
@@ -225,6 +225,8 @@ if (pageTodo) {
         fetch(`https://api-nodejs-todolist.herokuapp.com/user/${idLogUser}/avatar`, requestOptions)
         .then(response => response)
         .then(result => {
+            
+            console.log(result) 
             if (result.ok == true) {
                 blockUserImg.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                 blockUserImgUpdate.innerHTML = `<img src="${result.url}" alt="image avatar">`;
@@ -233,5 +235,6 @@ if (pageTodo) {
         })
         .catch(error => console.log('error', error));
     }
+
 }
 //  конец получать фото профиля при загрузке страницы дел
