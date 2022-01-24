@@ -1,16 +1,12 @@
+import {requestInApiReg} from './API.js';
+import {requestInApiLogIn} from './API.js';
+import {requestInApiLogOut} from './API.js';
+
 let formReg = document.querySelector('.regform');
-let myStorage = window.localStorage; 
 let clickLogOut = document.querySelector('.js-log-out');
 let formSignin = document.querySelector('.signinform');
 let buttonReg = document.querySelector('.button-reg');
 let buttonSignin = document.querySelector('.button-signin');
-let nameReg;
-let emailReg;
-let ageReg;
-let passwordReg;
-let emailSignin;
-let passworSignin;
-let user;
 let errorName = document.querySelector('.error-name');
 let errorEmail = document.querySelector('.error-email');
 let errorAge = document.querySelector('.error-age');
@@ -21,12 +17,14 @@ let errorSignin = document.querySelector('.error-signin');
 let errorUserExists = document.querySelector('.error-user-exists');
 let titleReg = document.querySelector('.title-reg-js');
 let errorValidate = document.querySelector('.error-validate');
-
-// дубликат переделать
 const signIn = document.querySelector('.section-signin');
-const clickSignIn = document.querySelector('.singin');
 const reg = document.querySelector('.section-reg');
-// конец дубликат переделать
+let nameReg;
+let emailReg;
+let ageReg;
+let passwordReg;
+let emailSignin;
+let passworSignin;
 
 // скрыть блок успешной регистрации
 if (crossSuccessful) {
@@ -36,10 +34,6 @@ if (crossSuccessful) {
     })
 }
 // конец скрыть блок успешной регистрации
-
-// for api
-let myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
 
 // регистрация
 if(formReg) {
@@ -106,26 +100,11 @@ if(formReg) {
             if (validateEmail(emailReg)) { //условие, если почта валидная
 
                 console.log('правильная validate почта');
-                // регистрация будет только при валидной почте
-                let raw = JSON.stringify({
-                    "name": nameReg,
-                    "email": emailReg,
-                    "password": passwordReg,
-                    "age": ageReg
-                });
-        
-                let requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
 
-                fetch("https://api-nodejs-todolist.herokuapp.com/user/register", requestOptions)
-                .then(response => {
-                    // response.text()
+                requestInApiReg ('user/register', nameReg, emailReg, passwordReg, ageReg).then(response => {
+                
                     if(response.status == 400) {
-
+    
                         errorUserExists.classList.add('error-visible');
                         titleReg.style.color = 'tomato';
 
@@ -144,16 +123,14 @@ if(formReg) {
                 .then(result => {                
 
                     if (result) { // если 400 то не result, проверка на наличие result
-
-                        // localStorage.setItem('userToken', JSON.parse(result).token);
+                       
                         console.log('успешно ' + JSON.parse(result).token);                
                         signIn.classList.add('open-section');
                         reg.classList.remove('open-section'); 
                         console.log('переход к логинизации');
                         successReg.classList.add('success-login-open') // открыть блок с успешной регистрац   
                     }
-                })
-                .catch(error => console.log('error', error))
+                })         
                 
             } else { // условие, если почта не валидная
 
@@ -175,35 +152,19 @@ if(formSignin) {
 
     buttonSignin.addEventListener('click', logInUser)
     
-    function logInUser() {
+    function logInUser(e) {
 
-        event.preventDefault();        
+        e.preventDefault();        
         
         emailSignin = document.querySelector('.emailsignin').value;
         passworSignin = document.querySelector('.passwordsignin').value;
         
         if (emailSignin.length !== 0 && passworSignin.length !== 0) {
+          
+            requestInApiLogIn('user/login', emailSignin, passworSignin).then(response => response.json()).then(result => {
 
-            let raw = JSON.stringify({
-                "email": emailSignin,
-                "password": passworSignin
-            });
-
-            console.log(emailSignin, passworSignin + ' после jsonа')
-
-            let requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            fetch("https://api-nodejs-todolist.herokuapp.com/user/login", requestOptions)          
-            .then(response => response.json())
-            .then(result => {
-                
                 if (result == 'Unable to login') {
-
+    
                     errorSignin.classList.add('success-login-open');
                     console.log('неверные данные для входа');
 
@@ -214,42 +175,28 @@ if(formSignin) {
                     localStorage.setItem('userName', result.user.name); // добавляем имя
                     document.location.href = 'to-do-list.html';
                     console.log('успешный вход ' + result.token, result.user._id);                    
-                }                
+                }    
+                                    
             })
-            .catch(error => {
-                console.log('error', error)
-            });
         };
     }
 }
 
 // log out
 let tokenLogUser = localStorage.getItem('userToken');
-// console.log(tokenLogUser)
 
 if (clickLogOut) {
 
-    clickLogOut.addEventListener('click', logOut)
+    clickLogOut.addEventListener('click', logOut);    
 
     function logOut() {
-        myHeaders.append("Authorization", `Bearer ${tokenLogUser}`)
-        // console.log(`Bearer ${tokenLogUser}`);
 
-        let requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+        requestInApiLogOut('user/logout', tokenLogUser).then(response => response.text()).then(result => {
 
-        fetch("https://api-nodejs-todolist.herokuapp.com/user/logout", requestOptions)
-        .then(response => response.text())
-        .then(result => {
             localStorage.removeItem('userToken');
             localStorage.removeItem('userName');
             localStorage.removeItem('userId'); 
             document.location.href = 'index.html';
         })
-        .catch(error => console.log('error', error));
     }
 }
-

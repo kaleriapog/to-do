@@ -23,6 +23,7 @@
 .section-all-wrapp {
     width: 100vw;
     min-height: 100vh;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,10 +36,10 @@
         content: '';
         background-color: rgba(0, 0, 0, 0.35);
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
     }
 }
 
@@ -235,6 +236,7 @@
 .progress > svg {
     height: 100%;
     display: block;
+    transform: rotate(90deg);
 }
 
 //  style for section width 
@@ -384,6 +386,9 @@
     .tasks-lists {
         max-width: 980px;
         width: 100%;
+        @include media-custom {
+            max-width: 70vw;              
+        }
 
         .tasks-lists-wrapp {
             @extend %tasks-lists;
@@ -392,6 +397,11 @@
             position: relative;
             background-color: $color-white;
             transition: all 0.3s;
+
+            @include media-custom {
+                border-radius: 20px;
+                padding: 25px 45px;   
+            }
         }
     
         .title-regular {
@@ -415,6 +425,10 @@
             max-height: 390px;
             overflow-y: scroll;
             padding-right: 60px;
+
+            @include media-custom {
+                max-height: 50vh;
+            }
         }
 
         &__to-do, &__complited {
@@ -504,6 +518,10 @@
 
     .profile-info {
         position: relative;
+
+        @include media-custom {
+            width: 25vw;
+        }
 
         .user-info {
             display: flex;
@@ -748,6 +766,10 @@
 
     .create-task-wrapp, .update-wrapp {
         background-color: $color-white;
+        @include media-tablet-large {
+            max-width: 90vw;
+            margin: auto;
+        }
     }
 
     .new-task, .update-task {

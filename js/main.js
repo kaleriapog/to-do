@@ -1,5 +1,6 @@
-// import {showUserDetails} from './edit-profile';
-
+let fieldPassword = document.getElementById('password');
+let pageTodo = document.querySelector('.page-to-do');
+let blockUserName = document.querySelector('.user-info__name');
 const editProfile = document.querySelector('.section-edit-profile');
 const clickEditProfile = document.querySelector('.user-info__edit');
 const body = document.querySelector('body');
@@ -10,16 +11,11 @@ const clickSignIn = document.querySelector('.singin');
 const reg = document.querySelector('.section-reg');
 const clickReg = document.querySelector('.reg');
 const crossEditProfile = document.querySelector('.cross-edit-profile');
-let fieldPassword = document.getElementById('password');
 const clickForOpenBlockUpdate =document.querySelector('.form__img-update');
 const crossIconCloseMoreOptions = document.querySelectorAll('.cross');
 const allListsItems = document.querySelectorAll('.tasks-lists__items');
 const sendUpdateBlock = document.querySelector('.send-img__wrapp');
 const closeUpdatePhoto =document.querySelector('.cross-update-photo');
-
-// дубликат переделать
-let blockUserName = document.querySelector('.user-info__name');
-let pageTodo = document.querySelector('.page-to-do');
 
 // scripts for open edit profile
 if (clickEditProfile !== null) {

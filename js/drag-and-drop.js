@@ -45,14 +45,13 @@ if(toDo !== null) {
   //  для зоны куда переносят 
   toDo.addEventListener('drop', drop);
   complited.addEventListener('drop', drop);
-    
+
   function drop(e) {
     let itemId = e.dataTransfer.getData('id'); // создаем айди для переносимого элемента
     let draggedElement = document.getElementById(itemId);
     this.classList.remove('hovertrue');
     draggedElement.classList.remove('hide'); //  показать перетискиваемый элемент после переноса
     e.target.append(draggedElement);  // добавляем переносимый элемент по айди
-    console.log ('onondrop ' + draggedElement.id);
+    console.log ('onondrop ' + draggedElement.id);      
   } 
 }
-

@@ -241,6 +241,7 @@ body {
 .section-all-wrapp {
   width: 100vw;
   min-height: 100vh;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -254,10 +255,10 @@ body {
   content: '';
   background-color: rgba(0, 0, 0, 0.35);
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
 }
 
 .open-section {
@@ -447,6 +448,7 @@ body {
 .progress > svg {
   height: 100%;
   display: block;
+  transform: rotate(90deg);
 }
 
 .w-small {
@@ -570,12 +572,25 @@ body {
   width: 100%;
 }
 
+@media (max-width: 1300px) {
+  .tasks-lists-page .tasks-lists {
+    max-width: 70vw;
+  }
+}
+
 .tasks-lists-page .tasks-lists .tasks-lists-wrapp {
   display: flex;
   justify-content: space-between;
   position: relative;
   background-color: #fff;
   transition: all 0.3s;
+}
+
+@media (max-width: 1300px) {
+  .tasks-lists-page .tasks-lists .tasks-lists-wrapp {
+    border-radius: 20px;
+    padding: 25px 45px;
+  }
 }
 
 .tasks-lists-page .tasks-lists .title-regular {
@@ -598,6 +613,12 @@ body {
   max-height: 390px;
   overflow-y: scroll;
   padding-right: 60px;
+}
+
+@media (max-width: 1300px) {
+  .tasks-lists-page .tasks-lists__items {
+    max-height: 50vh;
+  }
 }
 
 .tasks-lists-page .tasks-lists__to-do, .tasks-lists-page .tasks-lists__complited {
@@ -680,6 +701,12 @@ body {
 
 .tasks-lists-page .profile-info {
   position: relative;
+}
+
+@media (max-width: 1300px) {
+  .tasks-lists-page .profile-info {
+    width: 25vw;
+  }
 }
 
 .tasks-lists-page .profile-info .user-info {
@@ -908,6 +935,13 @@ body {
 
 .section-create-task .create-task-wrapp, .section-create-task .update-wrapp, .section-update-task .create-task-wrapp, .section-update-task .update-wrapp {
   background-color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .section-create-task .create-task-wrapp, .section-create-task .update-wrapp, .section-update-task .create-task-wrapp, .section-update-task .update-wrapp {
+    max-width: 90vw;
+    margin: auto;
+  }
 }
 
 .section-create-task .new-task, .section-create-task .update-task, .section-update-task .new-task, .section-update-task .update-task {
