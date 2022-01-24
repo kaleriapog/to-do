@@ -68,6 +68,7 @@ $mediaWidthTabletLarge: 1024px;
 $mediaWidthTabletHorizontal: 1024px;
 $mediaWidthLaptop: 1024px;
 $width: 1300px;
+$width-1500: 1500px;
 
 @mixin media-tablet {
     @media (max-width: $mediaWidthTablet) {
@@ -107,6 +108,12 @@ $width: 1300px;
 
 @mixin media-custom {
     @media (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin media-custom-1500 {
+    @media (max-width: $width-1500) {
         @content;
     }
 }

@@ -5,6 +5,7 @@ html {
 body {
  font-size: 14px; font-weight: normal; line-height: 20px;
   height: 100%; min-width: 280px; margin: 0; background: #ffffff;
+  overflow: hidden;
 }
 *,:after,:before {
   box-sizing: border-box;
