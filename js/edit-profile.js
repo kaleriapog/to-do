@@ -22,7 +22,7 @@ const buttonEditProfile = document.querySelector('.button-edit-profile');
 const errorEditProfile = document.querySelector('.error-edit-profile');
 const sendUpdateBlock = document.querySelector('.send-img__wrapp');
 const tokenLogUser = localStorage.getItem('userToken'); 
-
+const avatarUser = localStorage.getItem('avatarUser');
 // вывести данные пользователя в форму изменить профиль
 if(fieldName) {
 
@@ -100,11 +100,13 @@ if (buttonUpdatePhoto) {
         let fileUpload = document.getElementById('update-photo');
         console.log(fileUpload.files[0]);
 
-        await requestInApiUpdateAvatar('user/me/avatar', tokenLogUser, fileUpload).then(response => response.json()).then(result => console.log(result));
+        await requestInApiUpdateAvatar('user/me/avatar', tokenLogUser, fileUpload).then(response => response.json()).then(result => {
+            localStorage.setItem('avatarUser', true);
+            console.log(result)
+        });
 
         await requestInApiGetAvatar(`user/${idLogUser}/avatar`).then(response => response)
             .then(result => {                  
-                  
                 blockUserImg.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                 blockUserImgUpdate.innerHTML = `<img src="${result.url}" alt="image avatar">`;
 
@@ -121,11 +123,10 @@ if (pageTodo) {
     document.addEventListener("DOMContentLoaded", addImageAvatar);
 
     function addImageAvatar () {
-
+        if(!avatarUser) return;
         requestInApiGetAvatar(`user/${idLogUser}/avatar`).then(response => response)
             .then(result => {    
-
-                if (result.redirected == true) {
+                if (result.status === 200) {
                     blockUserImg.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                     blockUserImgUpdate.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                 } 

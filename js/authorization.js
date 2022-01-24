@@ -103,7 +103,7 @@ if(formReg) {
 
                 requestInApiReg ('user/register', nameReg, emailReg, passwordReg, ageReg).then(response => {
                 
-                    if(response.status == 400) {
+                    if(response.status === 400) {
     
                         errorUserExists.classList.add('error-visible');
                         titleReg.style.color = 'tomato';
@@ -163,7 +163,7 @@ if(formSignin) {
           
             requestInApiLogIn('user/login', emailSignin, passworSignin).then(response => response.json()).then(result => {
 
-                if (result == 'Unable to login') {
+                if (result === 'Unable to login') {
     
                     errorSignin.classList.add('success-login-open');
                     console.log('неверные данные для входа');
@@ -178,7 +178,7 @@ if(formSignin) {
                 }    
                                     
             })
-        };
+        }
     }
 }
 
