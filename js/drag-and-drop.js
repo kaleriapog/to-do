@@ -12,7 +12,8 @@ if(toDo !== null) {
     e.preventDefault();
   }
 
-  document.addEventListener('dragstart', drag);
+  toDo.addEventListener('dragstart', drag);
+  complited.addEventListener('dragstart', drag);
 
   function drag (e){
     if (e.target.closest('.js-task')) {
@@ -35,7 +36,6 @@ if(toDo !== null) {
   //  при отведении от блок куда можно поместить срабатывает один раз
   toDo.addEventListener('dragleave', dragLeave)
   complited.addEventListener('dragleave', dragLeave)
-
     
   function dragLeave(e) {
     this.classList.remove('hovertrue');
@@ -46,12 +46,23 @@ if(toDo !== null) {
   toDo.addEventListener('drop', drop);
   complited.addEventListener('drop', drop);
 
-  function drop(e) {
+  function drop(e) { 
+    
     let itemId = e.dataTransfer.getData('id'); // создаем айди для переносимого элемента
     let draggedElement = document.getElementById(itemId);
     this.classList.remove('hovertrue');
     draggedElement.classList.remove('hide'); //  показать перетискиваемый элемент после переноса
-    e.target.append(draggedElement);  // добавляем переносимый элемент по айди
-    console.log ('onondrop ' + draggedElement.id);      
-  } 
+    
+    if (e.target.classList.contains('js-task')) {
+
+      e.target.closest('.tasks-lists__items').appendChild(draggedElement);  // добавляем переносимый элемент по айди
+      console.log ('onondrop ' + draggedElement.id);   
+      console.log(e.target) 
+
+    } else {
+      
+      e.target.appendChild(draggedElement);  // добавляем переносимый элемент по айди
+
+    }
+  }  
 }

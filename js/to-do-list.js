@@ -20,6 +20,7 @@ const createTask = document.querySelector('.section-create-task');
 const clickToAddTask = document.querySelector('.tasks-lists__add-task');
 const complited = document.querySelector('.js-complited');
 const toDo = document.querySelector('.js-to-do');
+const errorCreateTask = document.querySelector('.error-new-task');
 
 myHeaders.append("Authorization", `Bearer ${tokenLogUser}`);
 myHeaders.append("Content-Type", "application/json");
@@ -40,16 +41,27 @@ if(createTask) {
 
     function addTask() {
 
-        let newTaskText = document.querySelector('.new-task').value;
+        let newTaskText = document.querySelector('.new-task').value.trim();
 
-       requestInApiAddTask('task', newTaskText).then(response => response.json())
-        .then(result => {        
-            console.log(result),
-            createTask.classList.remove('open-section'),
-            body.classList.remove('hiden'),
-            addTaskInner(result.data.description, result.data._id, parentItemsTask);
-            updateComplited ();            
-        })
+        if (newTaskText) {
+
+        requestInApiAddTask('task', newTaskText).then(response => response.json())
+            .then(result => {        
+                console.log(result),
+                createTask.classList.remove('open-section'),
+                body.classList.remove('hiden'),
+                addTaskInner(result.data.description, result.data._id, parentItemsTask);
+                updateComplited ();            
+            })
+            
+        } else {   
+
+            errorCreateTask.classList.add('error-new-task-visible');
+
+            setTimeout(() => {
+                errorCreateTask.classList.remove('error-new-task-visible');
+            }, 3000);
+        }
     }
 }
 // конец добавать задачу  

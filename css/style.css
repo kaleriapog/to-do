@@ -361,7 +361,7 @@ body {
   font-size: 20px;
 }
 
-.error-visible, .successful-visible, .send-img-visible {
+.error-visible, .successful-visible, .send-img-visible, .error-new-task-visible {
   visibility: visible;
   opacity: 1;
 }
@@ -579,6 +579,7 @@ body {
   border-radius: 50px;
   border: 1px solid #fff;
   background-color: #fff;
+  max-height: 80vh;
 }
 
 @media (max-width: 1500px) {
@@ -672,6 +673,7 @@ body {
   justify-content: space-between;
   position: relative;
   background-color: #fff;
+  max-height: 80vh;
   transition: all 0.3s;
 }
 
@@ -679,7 +681,6 @@ body {
   .tasks-lists-page .tasks-lists .tasks-lists-wrapp {
     border-radius: 20px;
     padding: 25px 45px;
-    max-height: 80vh;
   }
 }
 
@@ -1126,6 +1127,15 @@ body {
 
 .section-create-task .create-task-wrapp, .section-create-task .update-wrapp, .section-update-task .create-task-wrapp, .section-update-task .update-wrapp {
   background-color: #fff;
+  position: relative;
+}
+
+.section-create-task .create-task-wrapp .cross, .section-create-task .update-wrapp .cross, .section-update-task .create-task-wrapp .cross, .section-update-task .update-wrapp .cross {
+  transform: scale(1.2) rotate(45deg);
+}
+
+.section-create-task .create-task-wrapp .cross span, .section-create-task .update-wrapp .cross span, .section-update-task .create-task-wrapp .cross span, .section-update-task .update-wrapp .cross span {
+  background-color: #000;
 }
 
 @media (max-width: 1500px) {

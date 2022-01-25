@@ -18,6 +18,7 @@ const sendUpdateBlock = document.querySelector('.send-img__wrapp');
 const closeUpdatePhoto = document.querySelector('.cross-update-photo');
 const userInfo = document.querySelector('.user-info');
 const userInfoMore = document.querySelector('.user-info__more');
+const clickCrossCreateTask = document.querySelector('.cross-create-task');
 
 // scripts for open user info
 if (userInfo) {
@@ -63,6 +64,18 @@ if (clickAddTask !== null) {
     function openCreateTask() {
         createTask.classList.add('open-section');
         body.classList.add('hiden');
+    }
+}
+
+//scripts for close add new task
+if (clickCrossCreateTask) {
+
+    clickCrossCreateTask.addEventListener('click', closeCreateTask);
+
+    function closeCreateTask () {
+
+        createTask.classList.remove('open-section');
+        body.classList.remove('hiden');
     }
 }
 

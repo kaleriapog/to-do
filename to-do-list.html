@@ -17,7 +17,7 @@
                         <div class="w-small">
                             <div class="tasks-lists-wrapp">
                                 <div class="tasks-lists__to-do">
-                                    <span class="title-regular">to do</span>
+                                    <h1 class="title-regular">to do</h1>
                                         <div class="tasks-lists__items js-to-do">
                                         </div>
                                     <div class="tasks-lists__add-task">
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="tasks-lists__complited">
-                                    <span class="title-regular">Completed</span>
+                                    <h1 class="title-regular">Completed</h1>
                                     <div class="tasks-lists__items js-complited">                                
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                         <span class="plus-v"></span>
                         <span class="plus-h"></span>
                     </span>
-                    <span class="title-regular">Profil</span>
+                    <h1 class="title-regular">Profil</h1>
                     <form name="editform" class="form">
                         <div class="form__items-wrapp">
                             <div class="form__item-wrapp form__item-wrapp-update">
@@ -110,13 +110,18 @@
         <section class="section-create-task">
             <div class="w-small">
                 <div class="create-task-wrapp">
-                    <span class="title-regular">Task name</span>
+                    <span class="plus cross cross-create-task">
+                        <span class="plus-v"></span>
+                        <span class="plus-h"></span>
+                    </span>
+                    <h2 class="title-regular">Task name</h2>
                     <form name="createtaskform" class="form">
                         <div class="form__items-wrapp">
                             <div class="form__item-wrapp">
                                 <label for="new-task">Description</label>
                                 <textarea id="new-task" placeholder="Enter a task" class="new-task"></textarea>
                             </div>
+                            <span class="error-item error-new-task">Enter a task</span>
                         </div>
                         <div class="form__button-wrapp">
                             <button type="button" class="button js-button-add-task">Creat</button>
@@ -128,7 +133,7 @@
         <section class="section-update-task">
             <div class="w-small">
                 <div class="update-wrapp">
-                    <span class="title-regular">Task name</span>
+                    <h2 class="title-regular">Task name</h2>
                     <form name="updatetaskform" class="form">
                         <div class="form__items-wrapp">
                             <div class="form__item-wrapp">

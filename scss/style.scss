@@ -139,7 +139,7 @@
     font-size: 20px;
 }
 
-.error-visible, .successful-visible, .send-img-visible {
+.error-visible, .successful-visible, .send-img-visible, .error-new-task-visible {
     visibility: visible;
     opacity: 1;
 }
@@ -363,6 +363,7 @@
     border-radius: 50px;
     border: 1px solid $color-white;
     background-color: $color-white;
+    max-height: 80vh;
 
     @include media-custom-1500 {
         padding: 10vh 15vh;
@@ -459,12 +460,12 @@
             justify-content: space-between;
             position: relative;
             background-color: $color-white;
+            max-height: 80vh; 
             transition: all 0.3s;
 
             @include media-custom-1500 {
                 border-radius: 20px;
-                padding: 25px 45px; 
-                max-height: 80vh;  
+                padding: 25px 45px;                  
             }
 
             @include media-mobile {
@@ -900,6 +901,15 @@
 
     .create-task-wrapp, .update-wrapp {
         background-color: $color-white;
+        position: relative;
+
+        .cross {
+            transform: scale(1.2) rotate(45deg);
+
+            span {
+                background-color: $color-black;
+            }
+        }
 
         @include media-custom-1500 {
             max-height: 80vh;
