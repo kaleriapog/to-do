@@ -11,11 +11,24 @@ const clickSignIn = document.querySelector('.singin');
 const reg = document.querySelector('.section-reg');
 const clickReg = document.querySelector('.reg');
 const crossEditProfile = document.querySelector('.cross-edit-profile');
-const clickForOpenBlockUpdate =document.querySelector('.form__img-update');
+const clickForOpenBlockUpdate = document.querySelector('.form__img-update');
 const crossIconCloseMoreOptions = document.querySelectorAll('.cross');
 const allListsItems = document.querySelectorAll('.tasks-lists__items');
 const sendUpdateBlock = document.querySelector('.send-img__wrapp');
-const closeUpdatePhoto =document.querySelector('.cross-update-photo');
+const closeUpdatePhoto = document.querySelector('.cross-update-photo');
+const userInfo = document.querySelector('.user-info');
+const userInfoMore = document.querySelector('.user-info__more');
+
+// scripts for open user info
+if (userInfo) {
+
+    userInfo.addEventListener('click', openUserInfo);
+
+    function openUserInfo() {
+
+        userInfoMore.classList.toggle('user-info-open');
+    }
+}
 
 // scripts for open edit profile
 if (clickEditProfile !== null) {

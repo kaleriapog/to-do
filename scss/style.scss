@@ -622,9 +622,9 @@
             cursor: pointer;
             padding-bottom: 20px;
 
-            &:hover .user-info__more{
-               visibility: visible;
-               opacity: 1;
+            .user-info-open {
+                visibility: visible;
+                opacity: 1;
             }
 
             &__name {

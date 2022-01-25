@@ -842,7 +842,7 @@ body {
   padding-bottom: 20px;
 }
 
-.tasks-lists-page .profile-info .user-info:hover .user-info__more {
+.tasks-lists-page .profile-info .user-info .user-info-open {
   visibility: visible;
   opacity: 1;
 }
