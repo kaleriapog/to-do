@@ -521,11 +521,24 @@ body {
   .form input {
     padding: 15px 15px;
     margin-bottom: 15px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .form input[placeholder] {
+    font-size: 14px;
   }
 }
 
 .form .input-wrapp {
   position: relative;
+}
+
+@media (max-width: 767px) {
+  .form .input-wrapp {
+    width: 100%;
+  }
 }
 
 .form__items-wrapp {
@@ -542,6 +555,12 @@ body {
 
 .form__button-wrapp .button {
   margin: auto;
+}
+
+@media (max-width: 767px) {
+  .form__button-wrapp .button {
+    transform: scale(0.8);
+  }
 }
 
 .another-choice {
@@ -573,6 +592,7 @@ body {
     padding: 15px !important;
     max-width: 90vw;
     margin: auto;
+    border-radius: 20px;
   }
 }
 
@@ -986,7 +1006,7 @@ body {
 
 @media (max-width: 767px) {
   .section-edit-profile .form__item-wrapp input[placeholder] {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 

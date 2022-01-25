@@ -302,15 +302,24 @@
         @include media-mobile {
             padding: 15px 15px;
             margin-bottom: 15px;
+            max-width: 100%;
         }
     
         &[placeholder]          {
             @extend %placeholder;
+
+            @include media-mobile {
+                font-size: 14px;
+            }
         }
     }
 
     .input-wrapp {
         position: relative;
+
+        @include media-mobile {
+            width: 100%;
+        }
     }
 
     &__items-wrapp {
@@ -329,7 +338,7 @@
             margin: auto;
 
             @include media-mobile {
-
+                transform: scale(0.8);
             }
 
         }
@@ -363,6 +372,7 @@
         padding: 15px!important;
         max-width: 90vw;
         margin: auto;
+        border-radius: 20px;
     }
 }
 
@@ -760,7 +770,7 @@
                     font-size: 20px;
 
                     @include media-mobile {
-                        font-size: 16px;
+                        font-size: 12px;
                     }
                 }
             }
