@@ -100,10 +100,7 @@ if (buttonUpdatePhoto) {
         let fileUpload = document.getElementById('update-photo');
         console.log(fileUpload.files[0]);
 
-        await requestInApiUpdateAvatar('user/me/avatar', tokenLogUser, fileUpload).then(response => response.json()).then(result => {
-            localStorage.setItem('avatarUser', true);
-            console.log(result)
-        });
+        await requestInApiUpdateAvatar('user/me/avatar', tokenLogUser, fileUpload.files[0]).then(response => response.json()).then(result => {console.log(result)});
 
         await requestInApiGetAvatar(`user/${idLogUser}/avatar`).then(response => response)
             .then(result => {                  
@@ -123,15 +120,16 @@ if (pageTodo) {
     document.addEventListener("DOMContentLoaded", addImageAvatar);
 
     function addImageAvatar () {
-        if(!avatarUser) return;
-        requestInApiGetAvatar(`user/${idLogUser}/avatar`).then(response => response)
+        
+        requestInApiGetAvatar(`user/${idLogUser}/avatar`)
+        .then(response => response)
             .then(result => {    
                 if (result.status === 200) {
                     blockUserImg.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                     blockUserImgUpdate.innerHTML = `<img src="${result.url}" alt="image avatar">`;
                 } 
             })
-    }
-
+            .catch(error => console.log('error', error));
+    }   
 }
 //  конец получать фото профиля при загрузке страницы дел

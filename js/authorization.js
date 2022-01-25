@@ -1,6 +1,7 @@
 import {requestInApiReg} from './API.js';
 import {requestInApiLogIn} from './API.js';
 import {requestInApiLogOut} from './API.js';
+import {requestInApiUpdateAvatar} from './API.js';
 
 let formReg = document.querySelector('.regform');
 let clickLogOut = document.querySelector('.js-log-out');
@@ -33,7 +34,6 @@ if (crossSuccessful) {
         successReg.classList.remove('success-login-open')
     })
 }
-// конец скрыть блок успешной регистрации
 
 // регистрация
 if(formReg) {
@@ -128,7 +128,9 @@ if(formReg) {
                         signIn.classList.add('open-section');
                         reg.classList.remove('open-section'); 
                         console.log('переход к логинизации');
-                        successReg.classList.add('success-login-open') // открыть блок с успешной регистрац   
+                        // localStorage.setItem('userToken', '');
+                        // let tokenFree = localStorage.getItem('userToken');
+                        successReg.classList.add('success-login-open') // открыть блок с успешной регистрац                        
                     }
                 })         
                 

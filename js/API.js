@@ -138,7 +138,7 @@ export function requestInApiUpdateAvatar (localUrl, tokenLogUser, fileUpload) {
     myHeaders.append('Authorization', `Bearer ${tokenLogUser}`);
 
     let formdata = new FormData();
-    formdata.append('avatar', fileUpload.files[0], "blog-header.jpg");
+    formdata.append('avatar', fileUpload, "blog-header.jpg");
 
     let requestOptions = {
         method: 'POST',

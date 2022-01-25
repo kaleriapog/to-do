@@ -17,6 +17,11 @@
     @include media-custom-1500 {
         margin-bottom: 20px;
     }
+
+    @include media-mobile {
+        font-size: 20px;
+        line-height: 1;
+    }
 }
 
 .hide {
@@ -216,6 +221,12 @@
 // style for ProgressBar
 .box {
     display: inline-block;
+
+    @include media-mobile {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 }
   
 .progress {
@@ -225,6 +236,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include media-mobile {
+        width: 100px;
+        height: 100px;
+    }
 }
   
 .progress > .progress-inner {
@@ -234,6 +250,15 @@
     font-weight: 700;
     line-height: 30px;
     text-align: center;
+
+    @include media-mobile {
+        font-size: 18px;
+        line-height: 1;
+
+        .progress-сompleted__text {
+            display: none;
+        }
+    }
 }
   
 .progress > svg {
@@ -273,6 +298,11 @@
         padding: 16px 20px;
         margin-bottom: 30px;
         display: block;
+
+        @include media-mobile {
+            padding: 15px 15px;
+            margin-bottom: 15px;
+        }
     
         &[placeholder]          {
             @extend %placeholder;
@@ -297,6 +327,10 @@
         .button {
             @extend %button;
             margin: auto;
+
+            @include media-mobile {
+
+            }
 
         }
     }
@@ -323,6 +357,12 @@
 
     @include media-custom-1500 {
         padding: 10vh 15vh;
+    }
+
+    @include media-mobile {
+        padding: 15px!important;
+        max-width: 90vw;
+        margin: auto;
     }
 }
 
@@ -385,12 +425,22 @@
 .tasks-lists-page {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+
+    @include media-mobile {
+        flex-direction: column-reverse;
+    }
 
     .tasks-lists {
         max-width: 980px;
         width: 100%;
+
         @include media-custom-1500{
             max-width: 70vw;              
+        }
+
+        @include media-mobile {
+            max-width: 100%
         }
 
         .tasks-lists-wrapp {
@@ -406,13 +456,17 @@
                 padding: 25px 45px; 
                 max-height: 80vh;  
             }
+
+            @include media-mobile {
+                flex-direction: column;
+                padding: 15px;
+            }
         }
     
         .title-regular {
             margin-bottom: 30px; 
             max-width: 330px;
             width: 100%;
-
         }
 
         &__text {
@@ -433,11 +487,21 @@
             @include media-custom {
                 max-height: 50vh;
             }
+
+            @include media-mobile {
+                max-height: 20vh;
+                padding-right: 15px;
+                margin-bottom: 10px;
+            }
         }
 
         &__to-do, &__complited {
             max-width: 50%;
             width: 100%;
+
+            @include media-mobile {
+                max-width: 100%;
+            }
         }
 
         &__to-do {
@@ -445,6 +509,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+            @include media-mobile {
+                border: none;
+                padding-bottom: 20px;
+            }
            
             .hovertrue {
                             
@@ -468,6 +537,11 @@
             font-size: 20px;
             line-height: 24px;
             position: relative;
+
+            @include media-mobile {
+                padding: 15px;
+                font-size: 16px;
+            }
         }
 
         &__add-task {
@@ -481,6 +555,10 @@
             justify-content: space-between;
             transition: all 0.3s;
             cursor: pointer;
+
+            @include media-mobile {
+                padding: 15px;
+            }
         }
 
         &__add-task:hover {
@@ -498,6 +576,10 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
+
+            @include media-mobile {
+                max-width: 100%;
+            }
 
             .hovertrue {
 
@@ -527,6 +609,10 @@
             width: 25vw;
         }
 
+        @include media-mobile {
+            width: 100%;
+        }
+
         .user-info {
             display: flex;
             align-items: center;
@@ -549,6 +635,10 @@
                 span {
                     text-transform: capitalize;
                     font-size: 24px;
+
+                    @include media-mobile {
+                        font-size: 18px;
+                    }
                 }
             }
 
@@ -558,7 +648,12 @@
                 border-radius: 50%;
                 overflow: hidden;
                 background-color: $color-border-light;
-                margin-right: 15px;                
+                margin-right: 15px; 
+                
+                @include media-mobile {
+                    width: 40px;
+                    height: 40px;
+                }
             }
 
             &__more {
@@ -579,6 +674,12 @@
                 right: -25px;
                 transition: all 0.3s;
 
+                @include media-mobile {
+                    left: 15px;
+                    right: 15px;
+                    top: 55px;
+                }
+
                 &::before {
                     content: '';
                     display: block;
@@ -590,6 +691,11 @@
                     position: absolute;
                     right: 25px;
                     top: -13px;
+
+                    @include media-mobile {
+                        right: auto;
+                        left: 25px;
+                    }
                 }    
 
                 &::after {
@@ -603,6 +709,11 @@
                     position: absolute;
                     right: 26px;
                     top: -11px;
+
+                    @include media-mobile {
+                        right: auto;
+                        left: 26px;
+                    }
                 }    
             }
         }
@@ -647,6 +758,10 @@
 
                 &[placeholder] {
                     font-size: 20px;
+
+                    @include media-mobile {
+                        font-size: 16px;
+                    }
                 }
             }
         }
@@ -666,7 +781,12 @@
             position: relative;
             background-color: $color-black;
             margin: 0 auto 20px;
-            cursor: pointer;            
+            cursor: pointer;    
+            
+            @include media-mobile {
+                width: 60px;
+                height: 60px;
+            }
         }
 
         &__img-update::after {
@@ -803,6 +923,10 @@
 
         .button {
             margin: 0;
+
+            @include media-mobile {
+                transform: scale(0.8);
+            }
         }
     }
 }
