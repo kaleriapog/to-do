@@ -21,6 +21,7 @@ const clickToAddTask = document.querySelector('.tasks-lists__add-task');
 const complited = document.querySelector('.js-complited');
 const toDo = document.querySelector('.js-to-do');
 const errorCreateTask = document.querySelector('.error-new-task');
+const errorUpdateTask = document.querySelector('.error-update-task');
 
 myHeaders.append("Authorization", `Bearer ${tokenLogUser}`);
 myHeaders.append("Content-Type", "application/json");
@@ -167,19 +168,29 @@ if (parentWrappTask) {
 
                 function getNewTextTask() {
 
-                    let newTextUpdate = textareaUpdateTask.value;
+                    let newTextUpdate = textareaUpdateTask.value.trim();
                     let getIdForUpdateAPI = e.target.closest('.tasks-lists__item').id;
                     let getIdForUpdateHtml = document.getElementById(`${getIdForUpdateAPI}`)
 
                     //  добавить новый текст в API и HTML
-                    requestInApiUpdateTask('task/', getIdForUpdateAPI, newTextUpdate).then(response => response.text())
-                    .then(result => {
-                        
-                        getIdForUpdateHtml.querySelector('.tasks-lists__text').textContent = newTextUpdate // записываем в хтмл новое значение
-                        updateTask.classList.remove('open-section');
-                        body.classList.remove('hiden');
-                        getIdForUpdateHtml.classList.remove('open-more-options');
-                    }) 
+                    if (newTextUpdate) {
+                        requestInApiUpdateTask('task/', getIdForUpdateAPI, newTextUpdate).then(response => response.text())
+                        .then(result => {
+                            
+                            getIdForUpdateHtml.querySelector('.tasks-lists__text').textContent = newTextUpdate // записываем в хтмл новое значение
+                            updateTask.classList.remove('open-section');
+                            body.classList.remove('hiden');
+                            getIdForUpdateHtml.classList.remove('open-more-options');
+                        }) 
+
+                    } else {
+
+                        errorUpdateTask.classList.add('error-update-task-visible');
+
+                        setTimeout(() => {
+                            errorUpdateTask.classList.remove('error-update-task-visible');
+                        }, 3000);
+                    }
                 }            
                 console.log('открыто поле для редактирования ' + getIdForUpdate)
             }
